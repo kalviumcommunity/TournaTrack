@@ -1,5 +1,6 @@
 import React from 'react';
 import 'bootstrap/dist/css/bootstrap.css';
+import { Link } from 'react-router-dom';
 function Navbar() {
   return (
     <div>
@@ -31,7 +32,11 @@ function Navbar() {
          
         </li>
         <li className="nav-item">
-         <button>SignUp</button>
+        <Link to='/Signup'>
+        <button>SignUp</button>
+              </Link>
+             
+        
         </li>
        
        

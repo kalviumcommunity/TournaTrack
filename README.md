@@ -1,8 +1,9 @@
 # TournaTrack
-    
+    I am developing a website where you can create a tournament as an oraniser and also can participate as a player/team.
+    Stay connected for more details as it is in developing phase.
 
   # Back-end
-[] NodeJs - setting up a project with package.json
+[x] NodeJs - setting up a project with package.json
 [] NodeJS Modules
 [] fs Module
 [] Streams and Buffers

@@ -1,0 +1,29 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+.container{
+    background-color: yellow;
+}
+.name{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly
+}
+.org{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-around;
+}
+.ogname{
+    display: flex;
+   
+    flex-wrap: wrap;
+    margin-left: 2vw;
+    margin-top: 2vh;
+    padding-left: 1vh;
+}
+.og{
+    margin-top: 3vh;
+}

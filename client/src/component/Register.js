@@ -1,58 +1,89 @@
+import { Box, FormControl, FormLabel, Input, Button, Heading, Container } from '@chakra-ui/react';
 import React from 'react';
-import { useEffect,useState} from 'react';
 import "../component/css/Register.css";
-const Register = () => {
-  return (
-    <div className='container'>
-       <form>
-          <div className='element'>
-            <h1>Create your tournament</h1>
-            <div>
-           <input type="text"  placeholder='Name of the tournament'/>
-            </div>
-          <div className='org'>
-            <div className='name'>
-          <h4 className='og'>Organiser Name</h4> <input type="text" className='ogname' />
-            </div>
-            <div>
-          <h4>Sports</h4> <input type="text"  />
-            </div>
-            </div>
-            <div>
-          <h4>Entry fees in RS.</h4> <input type="number" />
-            </div>
-            <div>
-          <h4>Contact No.</h4> <input type="number" />
-            </div>
-            <div>
-          <h4>Email</h4> <input type="email" />
-            </div>
-            <div>
-          <h4>Start Date</h4> <input type="date" />
-            </div>
-            <div>
-          <h4>State</h4> <input type="text" />
-            </div>
-            <div>
-          <h4>City</h4> <input type="text" />
-            </div>
-            <div>
-          <h4>Pincode</h4> <input type="number" />
-            </div>
-            <div>
-          <h4>UPI QR code</h4> <input type="image" />
-            </div>
-            <div>
-          <h4>UPI number</h4> <input type="number" />
-            </div>
-            <div>
-           <h4>Rules and details of the tournament</h4> <textarea name="paragraph_text" cols="50" rows="20"></textarea>
-            </div>
-           <button>Confirm</button>
 
-          </div>
-     </form>
-    </div>
+
+const Register = () => {
+  const formData = [
+    {
+      title: "Tournament Name",
+      type: "text",
+      isRequired: "true"
+
+    },
+    {
+      title: "Organiser Name",
+      type: "text",
+      isRequired: "true"
+    },
+    {
+      title: "Entry fees in Rs.",
+      type: "number",
+      isRequired: "true"
+    },
+    {
+      title: "Email",
+      type: "email",
+      isRequired: "false"
+    },
+    {
+      title: "Contact No.",
+      type: "number",
+      isRequired: "true"
+    },
+    {
+      title: "Start date",
+      type: "date",
+      isRequired: "true"
+    },
+    {
+      title: "State",
+      type: "text",
+      isRequired: "true"
+    },
+    {
+      title: "City",
+      type: "text",
+      isRequired: "true"
+    },
+    {
+      title: "Pincode",
+      type: "number",
+      isRequired: "true"
+    },
+    {
+      title: "UPI QR code",
+      type: "image",
+      isRequired: "false"
+    },
+    {
+      title: "UPI number",
+      type: "number",
+      isRequired: "false"
+    }
+  ]
+
+  return (
+    <Container width={'100%'} justifyContent={'center'} align={'center'} bg="green.400" margin={'0'} maxWidth="100%"
+     >
+      <Box maxW="40vw" flexDirection="column" justifyContent="center"  >
+        <Heading>Create your Tournament</Heading>
+        {formData.map((data, index) => {
+          return (
+            <Box width={'full'} justifyContent={'center'} alignItems={'center'}  >
+
+              <FormControl maxW="100vw" display="flex" flexDirection="column" alignItems={'center'} key={index} >
+                <FormLabel maxW="100vh" justifyContent={'left'}>{data.title}</FormLabel>
+                <Input maxW="40vh" type={data.type} isRequired={data.isRequired} />
+              </FormControl>
+            </Box>
+
+          )
+        })}
+        <Button>Submit</Button>
+      </Box>
+    </Container>
+
   );
 }
 

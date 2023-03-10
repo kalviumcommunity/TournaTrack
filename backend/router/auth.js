@@ -5,7 +5,7 @@ const bcrypt = require('bcryptjs')
 
 require('../database/connection');
 const User = require('../models/userSchema');
-router.get('/sigin', (req, res) => {
+router.get('/signin', (req, res) => {
     res.send(`hello login world from server but router`);
 });
 
@@ -43,7 +43,7 @@ router.post('/register', async (req, res) => {
     }
 })
 //Login
-router.post('/sigin', async (req, res) => {
+router.post('/signin', async (req, res) => {
     try {
         const { email, password } = req.body;
         if (!email || !password) {
@@ -62,7 +62,7 @@ router.post('/sigin', async (req, res) => {
                 res.status(400).json({ error: "invalid user" });
             }
             else {
-                res.json({ message: "user sigin successfully" })
+                res.json({ message: "user signin successfully" })
             }
         }
         else {

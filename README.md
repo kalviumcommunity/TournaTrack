@@ -10,16 +10,16 @@
 [x] NPM
 [x] Nodemon
 [] Events in Nodejs
-[] Express JS - first route
+[x] Express JS - first route
 [] ExpressJS - additional routes
 [] Template Engines
 [] Partials
-[] Middlewares
+[x] Middlewares
   
    # Databases
 [x] MongoDB - Installations and Basics
 [x] Mongoose
-[] CRUD Operations
+[x] CRUD Operations
 [] Simple API - CRUD Operations using NodeJs
 [] Schemas and Models
    
@@ -32,6 +32,6 @@
 [x] IDE Setup
 [] NodeJs REPL
 [] Using the public folder to serve files
-[] Postman Use for Testing
+[x] Postman Use for Testing
 [] Authentication
 [] Deployment

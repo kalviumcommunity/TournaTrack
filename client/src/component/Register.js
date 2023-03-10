@@ -64,7 +64,7 @@ const Register = () => {
   ]
 
   return (
-    <Container width={'100%'} justifyContent={'center'} align={'center'} bg="green.400" margin={'0'} maxWidth="100%"
+    <Container width={'100%'} justifyContent={'center'} align={'center'} bg="green.200" margin={'0'} maxWidth="100%"
      >
       <Box maxW="40vw" flexDirection="column" justifyContent="center"  >
         <Heading>Create your Tournament</Heading>
@@ -80,7 +80,7 @@ const Register = () => {
 
           )
         })}
-        <Button>Submit</Button>
+        <Button>Create</Button>
       </Box>
     </Container>
 

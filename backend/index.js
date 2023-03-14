@@ -17,14 +17,17 @@ const middleware = (req, res, next) => {
 }
 middleware();
 
-app.get('/sigup', (req, res) => {
-    res.send(`hello register world from server`);
+app.get('/register', (req, res) => {
+    res.send(`hello signup world from server`);
 });
-app.get('/sigin', (req, res) => {
-    res.send(`hello register world from server`);
+app.get('/signin', (req, res) => {
+    res.send(`hello signin world from server`);
 });
 app.get('/', (req, res) => {
     res.send(`hello  world from server on homepage`);
+});
+app.get('/create', (req, res) => {
+    res.send(`hello  world from server on create tournament`);
 });
 app.listen(5000, () => {
     console.log(`server is running at port ${port} `)

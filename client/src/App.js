@@ -7,6 +7,7 @@ import Signin from './component/Signin';
 import Home from './component/Home';
 import Register from './component/Register';
 import Detail from './component/Detail';
+import GeoLocation from './component/GeoLocation';
 import PlayerRegister from './component/PlayerRegister';
 import { useState } from 'react';
 
@@ -16,6 +17,7 @@ function App() {
   return (
     <div className="App">
       <Navbar input={input} setInput={setInput} sportType={sportType}  setSportType={setSportType}/>
+    
        <Routes>
         <Route path='/' element={<Home value={input.toLowerCase()} sport={sportType.toLowerCase()} />}/>
         <Route path='/register' element={<Register />} /> 
@@ -24,7 +26,7 @@ function App() {
         <Route path = '/Detail' element ={<Detail/>}/>
         <Route path = '/PlayerRegister' element = {<PlayerRegister/>}/>
       </Routes>
-      
+      < GeoLocation/>
       
     </div>
   );

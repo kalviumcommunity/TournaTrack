@@ -4,12 +4,13 @@ import Navbar from './Navbar';
 import stadium from '../assest/stadium.jpg'
 import image from '../assest/img.png.jpg'
 // import data from '../Data';
-import { Flex, Box, Button, Image, SimpleGrid } from '@chakra-ui/react';
+import { Flex, Box, Button, Image, SimpleGrid, Card, CardBody } from '@chakra-ui/react';
 
 export default function Home({value,sport}) {
 // const [testData,setTestData] = useState("")
   const data = [
     {
+      id: 1,
       tournamentName: "IPL 15",
       name: "shubham",
       sports: "cricket",
@@ -123,6 +124,7 @@ export default function Home({value,sport}) {
     },
   ]
   const [myData, setMyData] = useState([])
+  const [dataId, setDataId] = useState("")
      
     useEffect(() => {
       if(value !== "") {
@@ -156,7 +158,10 @@ export default function Home({value,sport}) {
       } ))
       }
     }, [value,sport]);
-    
+    // console.log(myData.length);
+    const getData = (e) => {
+      myData.find({id: e.id})
+    }
 
   return (
     <div>
@@ -181,11 +186,14 @@ export default function Home({value,sport}) {
         </Box>
    
       <SimpleGrid padding={'15px'} spacing={10} minChildWidth={'250px'}  >
-        {myData.map((data, index) => {
+        {
+        myData.length==0?<Flex as={'h1'} fontSize={'50px'} color={'white'} >Sorry no tournament found.</Flex>:
+        myData.map((data, index) => {
           // console.log(data.Qr)
           return (
 
-            <Box key={index} height={'200px'}  margin='1%' boxShadow={'outline'} rounded='md' bg={'whiteAlpha.900'} >
+            <Card id={data.id} onClick={getData} key={index} height={'200px'}  margin='1%' boxShadow={'outline'} rounded='md' bg={'whiteAlpha.900'} maxW={'350px'} >
+              <CardBody>
               <Link to='/Detail'>
                 <Box key={index}  >
                   <Box textColor={'purple.700'} fontSize={'25'} fontWeight={'bold'} fontStyle={'oblique'} bg="blue.50">
@@ -208,12 +216,13 @@ export default function Home({value,sport}) {
                 </Box>
 
               </Link>
-
-            </Box>
+              </CardBody>
+            </Card>
 
           )
 
-        })}
+        })
+}
       </SimpleGrid>
 
     </div>

@@ -2,6 +2,7 @@ import React, {useState} from 'react';
 import { Box, ColorModeProvider, CSSReset, Flex, Heading, IconButton, theme, ThemeProvider, useColorMode,ColorModeScript, FormControl, FormLabel, Input, Stack,Button } from '@chakra-ui/react';
 import { MoonIcon,SunIcon } from '@chakra-ui/icons';
 import { useNavigate } from 'react-router-dom';
+import {ToastContainer,toast} from 'react-toastify'
 
 
 
@@ -74,7 +75,7 @@ const SignupForm = () =>{
        const PostData = async(e) =>{
           e.preventDefault();
           const {name,email,phone,password,cpassword} = user;
-        const res = await fetch("http://localhost:5000/register",{
+        const res = await fetch(`${process.env.REACT_APP_API}/register`,{
             method:"POST",
             headers:{
                 "Content-Type" : "application/json"
@@ -83,18 +84,27 @@ const SignupForm = () =>{
                 name,email,phone,password,cpassword 
             })
         });
+       
         const data = await res.json();
-          if(data.status===422 || !data ){
-            window.alert("invalid Registration");
-            console.log("invalid Registration")
-          }
-          else{
-            window.alert(" Registration succesull");
-            console.log("Registration succesfull")
-            navigate("/signin")
-          }
+        console.log(data);
+        if(data.error){
+            toast.error(data.error)
+
+        }
+        else{
+            if(data.status===422 || !data ){
+                window.alert("invalid Registration");
+                console.log("invalid Registration")
+              }
+              else{
+                window.alert(" Registration succesull");
+                console.log("Registration succesfull")
+                navigate("/signin")
+              }
+        }
+     
        }
-    return(
+    return(<>
      <Box  my={8} textAlign='left'>
      <form method = "POST">
         <FormControl>
@@ -129,7 +139,10 @@ const SignupForm = () =>{
             Register
         </Button>
      </form>
+    
      </Box>
+     <ToastContainer/> 
+     </>
     )
 }
 export default Signup;

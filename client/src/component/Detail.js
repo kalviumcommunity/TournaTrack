@@ -1,13 +1,24 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import data from '../Data';
 import { Box, Button, Flex } from '@chakra-ui/react';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 function Detail() {
+  const [details, setDetails] = useState({});
+  const location = useLocation()
+
+  useEffect(() => {
+    const fetchDetails = () => {
+      data.filter(single => single.id === location.state.id).map(data => setDetails(data))
+    }
+
+    fetchDetails()
+  }, [location.state.id]);
+
   return (
 
     <Box>
       <Box color={'red.600'} fontSize={'2xl'} fontStyle={'inherit'} fontWeight={'bold'}>Details of the tournament</Box>
-      {data.map((data, index) => {
+      {details.map((data, index) => {
         // console.log(data.Qr)
         return (
 
@@ -36,7 +47,7 @@ function Detail() {
 
       <Button>Back</Button>
     </Box>
-    
+
   );
 }
 

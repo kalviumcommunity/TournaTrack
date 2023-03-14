@@ -66,7 +66,7 @@ const LoginForm = () =>{
     const loginUser = async(e) =>{
         e.preventDefault();
 
-      const res =  await fetch('http://localhost:5000/signin', {
+      const res =  await fetch(`${process.env.REACT_APP_API}/signin`, {
         method:"POST",
         headers:{
            "Content-Type" : "application/json"

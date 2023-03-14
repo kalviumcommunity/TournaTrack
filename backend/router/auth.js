@@ -2,10 +2,10 @@ const jwt = require('jsonwebtoken')
 const express = require('express');
 const router = express.Router();
 const bcrypt = require('bcryptjs')
-
+const Tournament = require('../models/tournamentData')
 require('../database/connection');
 const User = require('../models/userSchema');
-router.get('/sigin', (req, res) => {
+router.get('/signin', (req, res) => {
     res.send(`hello login world from server but router`);
 });
 
@@ -43,7 +43,7 @@ router.post('/register', async (req, res) => {
     }
 })
 //Login
-router.post('/sigin', async (req, res) => {
+router.post('/signin', async (req, res) => {
     try {
         const { email, password } = req.body;
         if (!email || !password) {
@@ -62,7 +62,7 @@ router.post('/sigin', async (req, res) => {
                 res.status(400).json({ error: "invalid user" });
             }
             else {
-                res.json({ message: "user sigin successfully" })
+                res.json({ message: "user signin successfully" })
             }
         }
         else {
@@ -72,6 +72,27 @@ router.post('/sigin', async (req, res) => {
     } catch (err) {
         console.log(err);
     }
+})
+//tournamentdata
+router.post('/create',async(req,res) =>{
+    const{ tournament_name,organiser_name,entry_fees,email,contact,start_date,state,city,pincode,upiQr,upinumber}=req.body;
+    if (!tournament_name || !organiser_name || !entry_fees || !contact || !start_date || !state || !city || !pincode ) {
+        return res.status(422).json({ error: "please fill the required details" })
+    }
+    try{
+        const tournament = new Tournament({ tournament_name,organiser_name,entry_fees,email,contact,start_date,state,city,pincode,upiQr,upinumber })
+
+        const createTournamenr = await tournament.save()
+        if (createTournamenr) {
+            res.status(201).json({ message: "Tournament Created" });
+        }
+        else {
+            res.status(500).json({ error: "Try again" })
+        }
+    } catch (err) {
+        console.log(err);
+    }
+
 })
 
 module.exports = router;

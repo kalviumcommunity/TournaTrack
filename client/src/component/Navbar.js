@@ -1,18 +1,21 @@
 import React,{useState} from 'react';
 import { HamburgerIcon,Search2Icon } from '@chakra-ui/icons';
 import { Flex, Input,Button,Select} from '@chakra-ui/react';
+
 import { Link } from 'react-router-dom';
 import Home from './Home';
 
 function Navbar({input, setInput, sportType,setSportType}) {
   // const[sportType ,setSportType] = useState('');
   // console.log(sportType);
+  
   return (     <>
               <Flex p={4} flexDirection={'row'} justifyContent={'space-between'} bg={'rgb(51, 53, 69)'}>
-                <Flex alignItems={'center'} color="white" ml={5}>
-                  
+                <Link  to={'/'} >
+                <Flex alignItems={'center'} color="white" ml={5} >
                     Logo
                     </Flex>
+                    </Link>
                     <Flex flexDirection={'row'} alignItems={'center'} bg={'white'} paddingLeft="1vw" borderRadius={8}>
                       <Search2Icon color={'black'} />
                       <Input value={input} onChange={(e)=>{setInput(e.target.value)}} ml={2} type={'text'} placeholder = "Search your city name"   bg={'white'} width="30vw" _focusVisible={{}} />

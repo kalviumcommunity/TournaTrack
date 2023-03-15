@@ -124,7 +124,18 @@ export default function Home({value,sport}) {
     },
   ]
   const [myData, setMyData] = useState([])
-  const [dataId, setDataId] = useState("")
+  const [dataId, setDataId] = useState({})
+  const tournamentData = async() =>{
+   
+    
+  const res = await fetch(`${process.env.REACT_APP_API}/home`)
+  const tData = await res.json()
+  setDataId(tData)
+  console.log(dataId);
+  // const finalData=tData.post
+  }
+  
+     
      
     useEffect(() => {
       if(value !== "") {
@@ -134,30 +145,31 @@ export default function Home({value,sport}) {
         const type = e.sports.toLowerCase()
           console.log("array type",type);
           console.log("prop type",sport)
-        // value === e.city.toLowerCase()
-        return(
-          (sport)?searchcity.includes(search) && searchcity.startsWith(search) && type===sport :
-          searchcity.includes(search) || searchcity.startsWith(search)
-        )
-
-      } ))
-      } else {
-      //   setMyData(data)
-      setMyData(data.filter((e)=>{
-        const search = value;
-        const searchcity = e.city.toLowerCase()
-        const type = e.sports.toLowerCase()
-          console.log("array type",type);
-          console.log("prop type",sport)
-        // value === e.city.toLowerCase()
-        return(
-          (sport)?searchcity.includes(search) && searchcity.startsWith(search) && type===sport :
-          searchcity.includes(search) || searchcity.startsWith(search)
-        )
-
-      } ))
-      }
-    }, [value,sport]);
+          // value === e.city.toLowerCase()
+          return(
+            (sport)?searchcity.includes(search) && searchcity.startsWith(search) && type===sport :
+            searchcity.includes(search) || searchcity.startsWith(search)
+            )
+            
+          } ))
+        } else {
+          //   setMyData(data)
+          setMyData(data.filter((e)=>{
+            const search = value;
+            const searchcity = e.city.toLowerCase()
+            const type = e.sports.toLowerCase()
+            // console.log("array type",type);
+            // console.log("prop type",sport)
+            // value === e.city.toLowerCase()
+            return(
+              (sport)?searchcity.includes(search) && searchcity.startsWith(search) && type===sport :
+              searchcity.includes(search) || searchcity.startsWith(search)
+              )
+              
+            } ))
+          }
+          tournamentData()
+        }, [value,sport]);
     // console.log(myData.length);
     const getData = (e) => {
       myData.find({id: e.id})
@@ -184,9 +196,16 @@ export default function Home({value,sport}) {
         <Box textColor={'whiteAlpha.900'} fontSize={'20'} fontWeight={'bold'} fontStyle={'normal'} textAlign={'left'} paddingLeft={'20px'} >
           Upcoming Tournament
         </Box>
-   
+        {/* {tData.map((data)=>{
+            return(
+              <div>
+                <p>{data.post.tournament_name}</p>
+              </div>
+            )
+          })} */}
       <SimpleGrid padding={'15px'} spacing={10} minChildWidth={'250px'}  >
         {
+
         myData.length==0?<Flex as={'h1'} fontSize={'50px'} color={'white'} >Sorry no tournament found.</Flex>:
         myData.map((data, index) => {
           // console.log(data.Qr)

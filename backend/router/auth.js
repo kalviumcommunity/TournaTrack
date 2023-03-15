@@ -94,5 +94,14 @@ router.post('/create',async(req,res) =>{
     }
 
 })
+router.get('/home', (req,res) =>{
+    Tournament.find()
+    .then((post)=>{
+        res.json({post})
+    })
+    .catch((err)=>{
+        console.log(err);
+    })
+})
 
 module.exports = router;

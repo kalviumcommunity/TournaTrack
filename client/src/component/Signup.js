@@ -3,6 +3,8 @@ import { Box, ColorModeProvider, CSSReset, Flex, Heading, IconButton, theme, The
 import { MoonIcon,SunIcon } from '@chakra-ui/icons';
 import { useNavigate } from 'react-router-dom';
 import {ToastContainer,toast} from 'react-toastify'
+import 'react-toastify/dist/ReactToastify.css';
+  
 
 
 
@@ -141,7 +143,7 @@ const SignupForm = () =>{
      </form>
     
      </Box>
-     <ToastContainer/> 
+ <ToastContainer/>
      </>
     )
 }

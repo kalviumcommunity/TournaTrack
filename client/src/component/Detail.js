@@ -6,18 +6,18 @@ function Detail() {
   const [details, setDetails] = useState({});
   const location = useLocation()
 
-  useEffect(() => {
-    const fetchDetails = () => {
-      data.filter(single => single.id === location.state.id).map(data => setDetails(data))
-    }
+  // useEffect(() => {
+  //   const fetchDetails = () => {
+  //     data.filter(single => single.id === location.state.id).map(data => setDetails(data))
+  //   }
 
-    fetchDetails()
-  }, [location.state.id]);
+  //   fetchDetails()
+  // }, [location.state.id]);
 
   return (
 
     <Box>
-      <Box color={'red.600'} fontSize={'2xl'} fontStyle={'inherit'} fontWeight={'bold'}>Details of the tournament</Box>
+      {/* <Box color={'red.600'} fontSize={'2xl'} fontStyle={'inherit'} fontWeight={'bold'}>Details of the tournament</Box>
       {details.map((data, index) => {
         // console.log(data.Qr)
         return (
@@ -39,7 +39,7 @@ function Detail() {
 
         )
 
-      })}
+      })} */}
 
       <Link to='/PlayerRegister'>
         <Button>Register</Button>

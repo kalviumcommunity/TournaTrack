@@ -23,8 +23,8 @@ function App() {
         <Route path='/register' element={<Register />} /> 
         <Route path='/signin' element={<Signin/>} /> 
         <Route path='/signup' element={<Signup/>} /> 
-        <Route path = '/Detail/:id' element ={<Detail/>}/>
-        <Route path = '/PlayerRegister' element = {<PlayerRegister/>}/>
+        <Route path = '/detail/:id' element ={<Detail/>}/>
+        <Route path = '/playerregister' element = {<PlayerRegister/>}/>
       </Routes>
       < GeoLocation/>
       

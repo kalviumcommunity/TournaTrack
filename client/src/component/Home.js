@@ -207,7 +207,7 @@ export default function Home({value,sport}) {
                 <div key={data._id}>
                 <Card id={data._id} onClick={getData}  height={'200px'}  margin='1%' boxShadow={'outline'} rounded='md' bg={'whiteAlpha.900'} maxW={'350px'} >
                 <CardBody>
-                <Link to={`/Detail/${data._id}`}>
+                <Link to={`/detail/${data._id}`}>
                   <Box  >
                     <Box textColor={'purple.700'} fontSize={'25'} fontWeight={'bold'} fontStyle={'oblique'} bg="blue.50">
                       {data.tournament_name}

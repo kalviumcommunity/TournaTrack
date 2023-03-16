@@ -124,27 +124,43 @@ export default function Home({value,sport}) {
     },
   ]
   const [myData, setMyData] = useState([])
-  const [dataId, setDataId] = useState({})
-  const tournamentData = async() =>{
-   
-    
-  const res = await fetch(`${process.env.REACT_APP_API}/home`)
-  const tData = await res.json()
-  setDataId(tData)
+  const [dataId, setDataId] = useState(null)
+
+  useEffect(() => {
+    const tournamentData = async() =>{
+      const res = await fetch(`${process.env.REACT_APP_API}/home`)
+      const tData = await res.json()
+      // const finalData=tData.post
+      setDataId(tData)
+    }
+    tournamentData()
+  }, [])
+
   console.log(dataId);
-  // const finalData=tData.post
-  }
-  
-     
-     
-    useEffect(() => {
-      if(value !== "") {
-        setMyData(data.filter((e)=>{
+
+  useEffect(() => {
+    if(value !== "") {
+      setMyData(data.filter((e)=>{
         const search = value;
         const searchcity = e.city.toLowerCase()
         const type = e.sports.toLowerCase()
-          console.log("array type",type);
-          console.log("prop type",sport)
+        console.log("array type",type);
+        console.log("prop type",sport)
+        // value === e.city.toLowerCase()
+        return(
+          (sport)?searchcity.includes(search) && searchcity.startsWith(search) && type===sport :
+          searchcity.includes(search) || searchcity.startsWith(search)
+          )
+          
+        } ))
+      } else {
+        //   setMyData(data)
+        setMyData(data.filter((e)=>{
+          const search = value;
+          const searchcity = e.city.toLowerCase()
+          const type = e.sports.toLowerCase()
+          // console.log("array type",type);
+          // console.log("prop type",sport)
           // value === e.city.toLowerCase()
           return(
             (sport)?searchcity.includes(search) && searchcity.startsWith(search) && type===sport :
@@ -152,27 +168,12 @@ export default function Home({value,sport}) {
             )
             
           } ))
-        } else {
-          //   setMyData(data)
-          setMyData(data.filter((e)=>{
-            const search = value;
-            const searchcity = e.city.toLowerCase()
-            const type = e.sports.toLowerCase()
-            // console.log("array type",type);
-            // console.log("prop type",sport)
-            // value === e.city.toLowerCase()
-            return(
-              (sport)?searchcity.includes(search) && searchcity.startsWith(search) && type===sport :
-              searchcity.includes(search) || searchcity.startsWith(search)
-              )
-              
-            } ))
-          }
-          tournamentData()
-        }, [value,sport]);
-    // console.log(myData.length);
+        }
+      }, [value,sport]);
+      // console.log(myData.length);
     const getData = (e) => {
       myData.find({id: e.id})
+      dataId.find({id:e.id})
     }
 
   return (
@@ -196,13 +197,45 @@ export default function Home({value,sport}) {
         <Box textColor={'whiteAlpha.900'} fontSize={'20'} fontWeight={'bold'} fontStyle={'normal'} textAlign={'left'} paddingLeft={'20px'} >
           Upcoming Tournament
         </Box>
-        {/* {tData.map((data)=>{
+        <SimpleGrid padding={'15px'} spacing={10} minChildWidth={'250px'}  >
+        {dataId && dataId.post.map((data)=>{
             return(
-              <div>
-                <p>{data.post.tournament_name}</p>
+              
+                // <Box>
+                // <Card style={{color: "white"}}>{data.tournament_name}</Card>
+                // </Box>
+                <div key={data._id}>
+                <Card id={data._id} onClick={getData}  height={'200px'}  margin='1%' boxShadow={'outline'} rounded='md' bg={'whiteAlpha.900'} maxW={'350px'} >
+                <CardBody>
+                <Link to={`/Detail/${data._id}`}>
+                  <Box  >
+                    <Box textColor={'purple.700'} fontSize={'25'} fontWeight={'bold'} fontStyle={'oblique'} bg="blue.50">
+                      {data.tournament_name}
+                    </Box>
+                    <Flex justifyContent={'center'} alignItems={'center'}>
+                      <Box h='100px' w={'200px'} textAlign='center'>
+                        <Image h='100px' w={'200px'} boxShadow={'outline'} rounded={'5px'} src={data.Qr} />
+                      </Box>
+                    </Flex>
+                    <Flex justifyContent={'space-evenly'}>
+                      <Box textColor={'purple.700'} fontSize={'25'} fontWeight={'bold'} fontStyle={'oblique'}>
+                        {data.start_date}
+                      </Box>
+                      <Box textColor={'purple.700'} fontSize={'25'} fontWeight={'bold'} fontStyle={'oblique'}>
+  
+                        {data.city}
+                      </Box>
+                    </Flex>
+                  </Box>
+  
+                </Link>
+                </CardBody>
+              </Card>
               </div>
+            
             )
-          })} */}
+          })}
+          </SimpleGrid>
       <SimpleGrid padding={'15px'} spacing={10} minChildWidth={'250px'}  >
         {
 

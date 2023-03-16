@@ -104,4 +104,14 @@ router.get('/home', (req,res) =>{
     })
 })
 
+router.get('/home/:id',(req,res)=>{
+    Tournament.findOne({_id: req.params.id})
+    .then((post)=>{
+        res.json({post})
+    })
+    .catch((err)=>{
+        console.log(err);
+    })
+})
+
 module.exports = router;

@@ -1,45 +1,33 @@
 import React, { useEffect, useState } from 'react';
-import data from '../Data';
+// import data from '../Data';
 import { Box, Button, Flex } from '@chakra-ui/react';
-import { Link, useLocation } from 'react-router-dom';
+import { Link, useLocation,useParams } from 'react-router-dom';
 function Detail() {
   const [details, setDetails] = useState({});
   const location = useLocation()
+  const {id} = useParams()
 
-  // useEffect(() => {
-  //   const fetchDetails = () => {
-  //     data.filter(single => single.id === location.state.id).map(data => setDetails(data))
-  //   }
-
-  //   fetchDetails()
-  // }, [location.state.id]);
+  const fetchDetails = async() => {
+    const response = await fetch(`${process.env.REACT_APP_API}/home/${id}`)
+    const result = await response.json()
+    setDetails(result.post)
+    console.log(details);
+  }
+  
+  useEffect(() => {
+    fetchDetails()
+  }, [] );
 
   return (
-
-    <Box>
-      {/* <Box color={'red.600'} fontSize={'2xl'} fontStyle={'inherit'} fontWeight={'bold'}>Details of the tournament</Box>
-      {details.map((data, index) => {
-        // console.log(data.Qr)
-        return (
-
-          <Box key={index} height={'200px'} margin='1%' boxShadow={'outline'} rounded='md' bg={'whiteAlpha.900'} >
-
-            <Box key={index}  >
-
-              {data.tournamentName}
-              {data.sports}
-              {data.city}
-            </Box>
-
-          </Box>
-
-
-
-
-
-        )
-
-      })} */}
+     
+    <Box textAlign={'center'}>
+         
+            <Flex fontSize={'xxx-large'} color={'red'} bg={'yellow'} justifyContent={'center'} alignItems={'center'}>{details.tournament_name.toUpperCase()}</Flex>
+            <Flex>{details.start_date}</Flex>
+            <Flex>{details.city}</Flex>
+            <Flex>{details.state}</Flex>
+            <Flex>{details.pincode}</Flex>
+        
 
       <Link to='/PlayerRegister'>
         <Button>Register</Button>
@@ -47,7 +35,7 @@ function Detail() {
 
       <Button>Back</Button>
     </Box>
-
+     
   );
 }
 

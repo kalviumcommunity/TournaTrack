@@ -3,6 +3,7 @@ const express = require('express');
 const router = express.Router();
 const bcrypt = require('bcryptjs')
 const Tournament = require('../models/tournamentData')
+const Player = require('../models/playerData')
 require('../database/connection');
 const User = require('../models/userSchema');
 router.get('/signin', (req, res) => {
@@ -102,6 +103,39 @@ router.get('/home', (req,res) =>{
     .catch((err)=>{
         console.log(err);
     })
+})
+
+router.get('/home/:id',(req,res)=>{
+    Tournament.findOne({_id: req.params.id})
+    .then((post)=>{
+        res.json({post})
+    })
+    .catch((err)=>{
+        console.log(err);
+    })
+})
+
+// player data
+router.post('/player', async(req,res)=>{
+    const{team_name,captain,contact,payment,player_name}=req.body;
+    if (!team_name || !captain||!contact || !player_name) {
+        return res.status(422).json({ error: "please fill the required details" })
+    }
+    try{
+        const player = new Player({team_name,captain,contact,payment,player_name})
+
+        const playerRegister = await player.save()
+        if (playerRegister) {
+            res.status(201).json({ message: "Team registraion sucessfully" });
+        }
+        else {
+            res.status(500).json({ error: "Sorry not registerd, Try again" })
+        }
+    }
+    catch(err){
+        console.log(err);
+    }
+
 })
 
 module.exports = router;

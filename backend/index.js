@@ -29,6 +29,9 @@ app.get('/', (req, res) => {
 app.get('/create', (req, res) => {
     res.send(`hello  world from server on create tournament`);
 });
+app.get('/player', (req, res) => {
+    res.send(`hello  world from server on player register`);
+});
 app.listen(5000, () => {
     console.log(`server is running at port ${port} `)
 })

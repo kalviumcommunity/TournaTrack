@@ -1,5 +1,6 @@
 import { Box, ColorModeProvider, CSSReset, Flex, Heading, IconButton, theme, ThemeProvider, useColorMode,ColorModeScript, FormControl, FormLabel, Input, Stack,Button } from '@chakra-ui/react';
-import React,{useState} from 'react';
+import React,{useState,useEffect} from 'react';
+import jwt_decode from "jwt-decode"
 import { MoonIcon,SunIcon } from '@chakra-ui/icons';
 import { Link ,useNavigate} from 'react-router-dom';
 
@@ -59,6 +60,40 @@ const LoginHeader=()=>{
     )
 }
 const LoginForm = () =>{
+  const[user,setUser] = useState({});
+    function handelCallbackResponse(response){
+
+      fetch(`${process.env.REACT_APP_API}/token`,{
+        method:"POST",
+        body: JSON.stringify({
+          "tokenid":response.credential
+        }),
+        headers:{
+          "Content-Type" : "application/json"
+        }
+      })
+      .then(response=>response.json())
+      .then(json=>{
+        navigate("/")
+      })
+      console.log("Encode Jwt token: "+response.credential)
+      var userObject = jwt_decode(response.credential)
+      console.log(userObject);
+      setUser(userObject);
+    }
+
+     useEffect(()=>{
+      /* global google */
+     google.accounts.id.initialize({
+      client_id:process.env.REACT_APP_CLIENT_ID,
+      callback:handelCallbackResponse
+     });
+     google.accounts.id.renderButton(
+      document.getElementById("signInDiv"),
+      {theme:"outline",size:"large"}
+     ); 
+     },[])
+ 
     const navigate = useNavigate();
     const[email,setEmail] =  useState('');
     const[password,setpassword] = useState('');
@@ -96,12 +131,13 @@ const LoginForm = () =>{
             <FormLabel>Password</FormLabel>
                 <Input type={'password'} value={password} onChange={(e) =>setpassword(e.target.value)} placeholder='Enter your password'/> 
         </FormControl>
+        <div  id="signInDiv"></div>
         <Stack isInline justifyContent={'space-between'}>
             <Box>
                 <Link to='/signup'>Create your account</Link>
             </Box>
             <Box>
-               <Link >Forgot your password ?</Link>
+               <Link to='/reset'>Forgot your password ?</Link>
             </Box>
         </Stack>
         <Button bg={'green.500'}  width={'full'} mt={4} onClick={loginUser}>

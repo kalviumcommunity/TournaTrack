@@ -1,9 +1,13 @@
 import React,{useState} from 'react';
 import { HamburgerIcon,Search2Icon } from '@chakra-ui/icons';
-import { Flex, Input,Button,Select} from '@chakra-ui/react';
+import { Flex, Input,Button,Select,Menu,MenuItem,MenuList,MenuButton,MenuDivider,
+  Avatar,
+  Center
+  } from '@chakra-ui/react';
 
 import { Link } from 'react-router-dom';
 import Home from './Home';
+
 
 function Navbar({input, setInput, sportType,setSportType}) {
   // const[sportType ,setSportType] = useState('');
@@ -34,7 +38,47 @@ function Navbar({input, setInput, sportType,setSportType}) {
                   <Link to ='./signin'>
                   <Button ml={6} bg={'#F84464'} height="4vh">Sign in</Button >
                   </Link>
-                 <HamburgerIcon ml={6} as='HamburgerIcon' color={'white'}  />
+                 {/* <HamburgerIcon ml={6} as='HamburgerIcon' color={'white'}  /> */}
+                 <Menu ml={6}>
+              <MenuButton
+                as={Button}
+                rounded={'full'}
+                variant={'link'}
+                cursor={'pointer'}
+                minW={0}>
+                <Avatar
+                  size={'sm'}
+                  src={'https://avatars.dicebear.com/api/male/username.svg'}
+                />
+              </MenuButton>
+              <MenuList alignItems={'center'}>
+                <br />
+                <Center>
+                  <Avatar
+                    size={'2xl'}
+                    src={'https://avatars.dicebear.com/api/male/username.svg'}
+                  />
+                </Center>
+                <br />
+                <Center>
+                  <p>Username</p>
+                </Center>
+                <br />
+                <MenuDivider />
+                <Link to ='./profile'>
+                <MenuItem>My profile</MenuItem>
+                </Link>
+                <Link to ='./tournamentparticipated'>
+                 <MenuItem>My tournament</MenuItem>
+                </Link>
+                <Link to ='./about'>
+                <MenuItem>About us</MenuItem>
+                </Link>
+                <MenuItem>Logout</MenuItem>
+              </MenuList>
+            </Menu>
+                 
+  
                 </Flex>
               </Flex>
               </>

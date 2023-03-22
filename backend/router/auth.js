@@ -4,16 +4,27 @@ const router = express.Router();
 const bcrypt = require('bcryptjs')
 const Tournament = require('../models/tournamentData')
 const Player = require('../models/playerData')
+const{OAuth2Client}=require('google-auth-library')
 require('../database/connection');
+const nodemailer = require('nodemailer')
+const sendgridtransport = require("nodemailer-sendgrid-transport")
 const User = require('../models/userSchema');
+const ID = process.env.ID
 router.get('/signin', (req, res) => {
     res.send(`hello login world from server but router`);
 });
-
+// nodemailer
+  const transporter = nodemailer.createTransport(
+    sendgridtransport({
+        auth:{
+            api_key:process.env.NODEMAILER
+        }
+    })
+  )
 //sigup
 router.post('/register', async (req, res) => {
     const { name, email, phone, password, cpassword } = req.body;
-    if (!name || !email || !phone || !password || !cpassword) {
+    if (!name || !email  || !password || !cpassword) {
         return res.status(422).json({ error: "please fill the required details" })
     }
 
@@ -31,9 +42,17 @@ router.post('/register', async (req, res) => {
             const user = new User({ name, email, phone, password, cpassword })
 
             const userRegister = await user.save()
+            
 
             if (userRegister) {
                 res.status(201).json({ message: "user registraion succesfully" });
+                transporter.sendMail({
+                    to:email,
+                    from:"tournatrack.platform@gmail.com",
+                    subject:"Welcome to TournaTrack",
+                    html:`Hi ${name}, welcome to tournaTrack. We are very excited to serve you.
+                    `
+                })
             }
             else {
                 res.status(500).json({ error: "Registraion failed" })
@@ -52,7 +71,7 @@ router.post('/signin', async (req, res) => {
         }
         const userLogin = await User.findOne({ email: email });
 
-        if (userLogin) {
+        if (userLogin.password) {
             const isMatch = await bcrypt.compare(password, userLogin.password);
             const token = await userLogin.generateAuthToken();
             res.cookie("jwtoken", token, {
@@ -63,8 +82,21 @@ router.post('/signin', async (req, res) => {
                 res.status(400).json({ error: "invalid user" });
             }
             else {
+                const token = jwt.sign({
+                    email:userLogin.email,
+                    name:userLogin.name,
+                    _id:userLogin._id
+                },process.env.SECRET_KEY)
                 res.json({ message: "user signin successfully" })
             }
+        }
+        if(userLogin.withgoogle){
+            const token = jwt.sign({
+                email:userLogin.email,
+                name:userLogin.name,
+                _id:userLogin._id
+            },process.env.SECRET_KEY)
+            res.json({ message: "user signin successfully" })
         }
         else {
             res.status(400).json({ error: "invalid user" });
@@ -137,5 +169,97 @@ router.post('/player', async(req,res)=>{
     }
 
 })
+//reset password
+router.post('/reset',async(req,res)=>{
+   const {email} =req.body;
+   userfind= await User.findOne({email})
+   const token = jwt.sign({_id:userfind._id},process.env.SECRET_KEY,{
+    expiresIn:"1000s"
+   })
+   const{_id,name} = userfind;
+   const setUserToken= await User.findByIdAndUpdate(
+    {_id:_id},
+    {resettoken:token},
+    {new:true}
+   )
+    if(setUserToken){
+        transporter.sendMail({
+            to:userfind.email,
+            from:"tournatrack.platform@gmail.com",
+            subject:"Reset Password",
+            html:`You requested to reset password
+            <h3>Click <a href="${process.env.LOCALHOST}/newpassword/${userfind._id}/${token}">here</a> to reset your password</h3>
 
+            `
+        })
+        res.status(200).json({
+            message: "password reset link has been send to your register email"
+        })
+    }
+})
+//new password
+router.post('/newpassword/:id/:token', async(req,res)=>{
+    const {id,token} = req.params
+    const {password, cpassword} = req.body
+    const validuser = await User.findOne({_id:id,resettoken:token})
+    if(validuser){
+        const newPassword = await bcrypt.hash(password,12)
+        const newCPassword = await bcrypt.hash(cpassword,12)
+        const setNewPassword = await User.findByIdAndUpdate(
+            {_id:id},
+            {password:newPassword,cpassword: newCPassword}
+        );
+        setNewPassword.save();
+        res.status(201).json({message: "password updated sucessfully"})      
+    }
+    else{
+        res.json({error: "Link has been expired"})
+    }
+
+})
+
+// signin with google
+    const client = new OAuth2Client(ID)
+    router.post("/token", async (req,res) =>{
+        const {tokenid} = req.body;
+
+        const user = await client.verifyIdToken({
+            idToken:tokenid,
+            audience:ID
+        });
+        const payload = user.getPayload();
+        const email = payload.email;
+        const check = await User.findOne({email:email});
+        if(!check){
+            const name = payload.name
+            const email= payload.email
+            const userdata = new User()
+            userdata.name =name;
+            userdata.email=email;
+            userdata.withgoogle=true;
+
+            userdata.save(async (err,data)=>{
+                if(err){
+                    console.log(err);
+                }
+                else{
+                    const token = jwt.sign({
+                        email:data.email,
+                        name:data.name,
+                        _id: data._id,
+                    },process.env.SECRET_KEY);
+                    res.json({status:"Signin successful", user:token});
+                }
+            })
+        }
+       else{
+        const token = jwt.sign({
+            email:check.email,
+            name:check.name,
+            _id: check._id,
+        },process.env.SECRET_KEY);
+        res.json({status:"Signin successful", user:token});
+       }
+        
+    })
 module.exports = router;

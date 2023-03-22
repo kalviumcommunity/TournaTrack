@@ -12,15 +12,21 @@ const userSchema = new mongoose.Schema({
     },
     phone: {
         type: Number,
-        required: true
+       
     },
     password: {
         type: String,
-        required: true
+       
     },
     cpassword: {
         type: String,
-        required: true
+       
+    },
+    resettoken:{
+        type:String
+    },
+    withgoogle:{
+     type:Boolean
     },
     tokens: [
         {

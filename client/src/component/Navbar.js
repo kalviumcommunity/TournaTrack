@@ -71,6 +71,9 @@ function Navbar({input, setInput, sportType,setSportType}) {
                 <Link to ='./tournamentparticipated'>
                  <MenuItem>My tournament</MenuItem>
                 </Link>
+                <Link to ='./premium'>
+                 <MenuItem>Premium</MenuItem>
+                </Link>
                 <Link to ='./about'>
                 <MenuItem>About us</MenuItem>
                 </Link>

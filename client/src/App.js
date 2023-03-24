@@ -9,7 +9,14 @@ import Register from './component/Register';
 import Detail from './component/Detail';
 import GeoLocation from './component/GeoLocation';
 import PlayerRegister from './component/PlayerRegister';
+import Reset from './component/Reset';
+import Newpassword from './component/Newpassword';
+import Profile from './component/Profile';
 import { useState } from 'react';
+import Tournament from './component/Tournament';
+import AboutUs from './AboutUs';
+import Participated from './component/Participated';
+import Created from './component/Created';
 
 function App() {
   const[input, setInput] =  useState("");
@@ -25,6 +32,13 @@ function App() {
         <Route path='/signup' element={<Signup/>} /> 
         <Route path = '/detail/:id' element ={<Detail/>}/>
         <Route path = '/playerregister' element = {<PlayerRegister/>}/>
+        <Route path='/reset' element={<Reset/>} /> 
+        <Route path='/profile' element={<Profile/>} /> 
+        {/* <Route path='/tournament' element={<Tournament/>} />  */}
+        <Route path='/about' element={<AboutUs/>} /> 
+        <Route path='tournamentparticipated' element={<Participated/>} /> 
+        <Route path='tournamentcreated' element={<Created/>} /> 
+        <Route path='/newpassword/:id/:token' element={<Newpassword/>} /> 
       </Routes>
       < GeoLocation/>
       

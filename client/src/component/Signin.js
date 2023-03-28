@@ -5,6 +5,7 @@ import { MoonIcon,SunIcon } from '@chakra-ui/icons';
 import { Link ,useNavigate} from 'react-router-dom';
 
 
+
 function Signin() {
     return (
        
@@ -62,7 +63,7 @@ const LoginHeader=()=>{
 const LoginForm = () =>{
   const[user,setUser] = useState({});
     function handelCallbackResponse(response){
-
+      //  console.log(response.credential)
       fetch(`${process.env.REACT_APP_API}/token`,{
         method:"POST",
         body: JSON.stringify({
@@ -80,6 +81,8 @@ const LoginForm = () =>{
       var userObject = jwt_decode(response.credential)
       console.log(userObject);
       setUser(userObject);
+      sessionStorage.setItem('name',userObject.name)
+      sessionStorage.setItem('image',userObject.picture)
     }
 
      useEffect(()=>{

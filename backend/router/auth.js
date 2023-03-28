@@ -88,7 +88,8 @@ router.post('/signin', async (req, res) => {
                 const token = jwt.sign({
                     email:userLogin.email,
                     name:userLogin.name,
-                    _id:userLogin._id
+                    _id:userLogin._id,
+                    picture:userLogin.picture
                 },process.env.SECRET_KEY)
                 res.json({ message: "user signin successfully" })
             }
@@ -97,7 +98,8 @@ router.post('/signin', async (req, res) => {
             const token = jwt.sign({
                 email:userLogin.email,
                 name:userLogin.name,
-                _id:userLogin._id
+                _id:userLogin._id,
+                picture:userLogin.picture
             },process.env.SECRET_KEY)
             res.json({ message: "user signin successfully" })
         }
@@ -239,6 +241,7 @@ router.post('/newpassword/:id/:token', async(req,res)=>{
         if(!check){
             const name = payload.name
             const email= payload.email
+            const picture = payload.picture
             const userdata = new User()
             userdata.name =name;
             userdata.email=email;
@@ -253,6 +256,7 @@ router.post('/newpassword/:id/:token', async(req,res)=>{
                         email:data.email,
                         name:data.name,
                         _id: data._id,
+                        picture:data.picture
                     },process.env.SECRET_KEY);
                     res.json({status:"Signin successful", user:token});
                 }
@@ -263,6 +267,7 @@ router.post('/newpassword/:id/:token', async(req,res)=>{
             email:check.email,
             name:check.name,
             _id: check._id,
+            picture:check.picture
         },process.env.SECRET_KEY);
         res.json({status:"Signin successful", user:token});
        }

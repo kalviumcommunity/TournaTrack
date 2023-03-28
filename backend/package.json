@@ -19,7 +19,7 @@
     "mongoose": "^6.9.1",
     "nodemailer": "^6.9.1",
     "nodemailer-sendgrid-transport": "^0.2.0",
-    "nodemon": "^2.0.21",
+    "nodemon": "^2.0.22",
     "razorpay": "^2.8.6"
   }
 }

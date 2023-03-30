@@ -14,9 +14,12 @@ import Newpassword from './component/Newpassword';
 import Profile from './component/Profile';
 import { useState } from 'react';
 import Tournament from './component/Tournament';
-import AboutUs from './AboutUs';
+import AboutUs from './component/AboutUs';
 import Participated from './component/Participated';
 import Created from './component/Created';
+import Premium from './component/Premium';
+import PaymentForm from './component/PaymentForm';
+import PaymentSuccess from './component/PaymentSucces';
 
 function App() {
   const[input, setInput] =  useState("");
@@ -36,6 +39,9 @@ function App() {
         <Route path='/profile' element={<Profile/>} /> 
         {/* <Route path='/tournament' element={<Tournament/>} />  */}
         <Route path='/about' element={<AboutUs/>} /> 
+        <Route path='/premium' element={<Premium/>} /> 
+        <Route path='/payment' element={<PaymentForm/>} />
+        <Route path="/paymentsuccess" element={<PaymentSuccess />} /> 
         <Route path='tournamentparticipated' element={<Participated/>} /> 
         <Route path='tournamentcreated' element={<Created/>} /> 
         <Route path='/newpassword/:id/:token' element={<Newpassword/>} /> 

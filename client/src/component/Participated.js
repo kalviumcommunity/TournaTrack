@@ -6,7 +6,10 @@ import { Link } from 'react-router-dom';
 const Participated = () => {
   return (
    
+      <>
       <Tournament/>
+    
+      </>
      
   );
 }

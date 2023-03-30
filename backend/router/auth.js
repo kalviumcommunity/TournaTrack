@@ -1,14 +1,17 @@
 const jwt = require('jsonwebtoken')
 const express = require('express');
+const crypto = require('crypto')
 const router = express.Router();
 const bcrypt = require('bcryptjs')
 const Tournament = require('../models/tournamentData')
 const Player = require('../models/playerData')
 const{OAuth2Client}=require('google-auth-library')
+const Razorpay = require('razorpay')
 require('../database/connection');
 const nodemailer = require('nodemailer')
 const sendgridtransport = require("nodemailer-sendgrid-transport")
 const User = require('../models/userSchema');
+const Payment = require('../models/paymentScehma')
 const ID = process.env.ID
 router.get('/signin', (req, res) => {
     res.send(`hello login world from server but router`);
@@ -85,7 +88,8 @@ router.post('/signin', async (req, res) => {
                 const token = jwt.sign({
                     email:userLogin.email,
                     name:userLogin.name,
-                    _id:userLogin._id
+                    _id:userLogin._id,
+                    picture:userLogin.picture
                 },process.env.SECRET_KEY)
                 res.json({ message: "user signin successfully" })
             }
@@ -94,7 +98,8 @@ router.post('/signin', async (req, res) => {
             const token = jwt.sign({
                 email:userLogin.email,
                 name:userLogin.name,
-                _id:userLogin._id
+                _id:userLogin._id,
+                picture:userLogin.picture
             },process.env.SECRET_KEY)
             res.json({ message: "user signin successfully" })
         }
@@ -173,6 +178,9 @@ router.post('/player', async(req,res)=>{
 router.post('/reset',async(req,res)=>{
    const {email} =req.body;
    userfind= await User.findOne({email})
+   if(!userfind){
+    return res.status(404).json({error:"User doesn't exist with this email"})
+   }
    const token = jwt.sign({_id:userfind._id},process.env.SECRET_KEY,{
     expiresIn:"1000s"
    })
@@ -233,6 +241,7 @@ router.post('/newpassword/:id/:token', async(req,res)=>{
         if(!check){
             const name = payload.name
             const email= payload.email
+            const picture = payload.picture
             const userdata = new User()
             userdata.name =name;
             userdata.email=email;
@@ -247,6 +256,7 @@ router.post('/newpassword/:id/:token', async(req,res)=>{
                         email:data.email,
                         name:data.name,
                         _id: data._id,
+                        picture:data.picture
                     },process.env.SECRET_KEY);
                     res.json({status:"Signin successful", user:token});
                 }
@@ -257,9 +267,60 @@ router.post('/newpassword/:id/:token', async(req,res)=>{
             email:check.email,
             name:check.name,
             _id: check._id,
+            picture:check.picture
         },process.env.SECRET_KEY);
         res.json({status:"Signin successful", user:token});
        }
         
     })
+    //payment 
+    const instance = new Razorpay({
+        key_id: process.env.RAZORPAY_SECREAT_KEY,
+        key_secret: process.env.RAZORPAY_KEY_ID,
+      });
+      
+     router.post('/checkout',async(req,res)=>{
+        const options = {
+            amount: Number(req.body.amount * 100),
+            currency: "INR",
+          };
+          const order = await instance.orders.create(options);
+        
+          res.status(200).json({
+            success: true,
+            order,
+          });
+     })
+      // paymentverification
+      router.post('/paymentverification', async(req,res)=>{
+        const { razorpay_order_id, razorpay_payment_id, razorpay_signature } =
+    req.body;
+
+  const body = razorpay_order_id + "|" + razorpay_payment_id;
+
+  const expectedSignature = crypto
+    .createHmac("sha256", process.env.RAZORPAY_SECREAT_KEY)
+    .update(body.toString())
+    .digest("hex");
+
+  const isAuthentic = expectedSignature === razorpay_signature;
+
+  if (isAuthentic) {
+    // Database comes here
+
+    await Payment.create({
+      razorpay_order_id,
+      razorpay_payment_id,
+      razorpay_signature,
+    });
+
+    res.redirect(
+    //   `http://localhost:3000/paymentsuccess?reference=${razorpay_payment_id}`
+    );
+  } else {
+    res.status(400).json({
+      success: false,
+    });
+  }
+      })
 module.exports = router;

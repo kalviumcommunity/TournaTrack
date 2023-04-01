@@ -7,6 +7,7 @@ import { Flex, Input,Button,Select,Menu,MenuItem,MenuList,MenuButton,MenuDivider
 
 import { Link } from 'react-router-dom';
 import Home from './Home';
+import '../component/css/Navbar.css'
 
 
 function Navbar({input, setInput, sportType,setSportType}) {
@@ -20,15 +21,15 @@ function Navbar({input, setInput, sportType,setSportType}) {
                     Logo
                     </Flex>
                     </Link>
-                    <Flex flexDirection={'row'} alignItems={'center'} bg={'white'} paddingLeft="1vw" borderRadius={8}>
+                    <Flex id='search-button-pc' flexDirection={'row'} alignItems={'center'} bg={'white'} paddingLeft="1vw" borderRadius={8}>
                       <Search2Icon color={'black'} />
                       <Input value={input} onChange={(e)=>{setInput(e.target.value)}} ml={2} type={'text'} placeholder = "Search your city name"   bg={'white'} width="30vw" _focusVisible={{}} />
                     </Flex>
                 
              
                 <Flex justifyContent={'space-between'} alignItems='center'>
-                <Select onChange={(e) => {setSportType(e.target.value)}} placeholder='select sports' color={'black'} bg={'whiteAlpha.900'} >
-                         <option value='vollyball'>Vollyball</option>
+                <Select onChange={(e) => {setSportType(e.target.value)}} placeholder='Select sports' color={'black'} bg={'whiteAlpha.900'} >
+                         <option value='vollyball'>Volleyball</option>
                          <option value='cricket'>Cricket</option>
                          <option value='kabaddi'>Kabaddi</option>
                          <option value='badminton'>Badminton</option>
@@ -70,6 +71,9 @@ function Navbar({input, setInput, sportType,setSportType}) {
                 </Link>
                 <Link to ='./tournamentparticipated'>
                  <MenuItem>My tournament</MenuItem>
+                </Link>
+                <Link to ='./premium'>
+                 <MenuItem>Premium</MenuItem>
                 </Link>
                 <Link to ='./about'>
                 <MenuItem>About us</MenuItem>

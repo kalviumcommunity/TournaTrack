@@ -2,7 +2,7 @@ import { Container,FormControl,FormLabel,Input,Box,Heading,Stack,RadioGroup,Radi
 import { useState } from 'react';
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
-
+import '../component/css/Register.css'
 function PlayerRegister() {
   const Data = [
     {
@@ -65,7 +65,7 @@ function PlayerRegister() {
     }
   }
   return (
-    <Container maxH={'100vh'} height={'100vh'} justifyContent={'center'} align={'center'} bg="green.400" margin={'0'} maxWidth="100%">
+    <Container maxH={'100vh'} height={'100vh'} justifyContent={'center'} align={'center'} bg="" margin={'0'} maxWidth="100%">
        <Heading>Register your Team</Heading>
        {Data.map((data, index) => {
           return (
@@ -87,13 +87,13 @@ function PlayerRegister() {
         <Radio value='2'>Cash</Radio>
       </Stack>
     </RadioGroup>
-    <div>
+    <div  >
             <h2>Players name</h2>
-        <textarea name="player_name" cols="50" rows="10" onChange={handelInputs} value={playerdata.name}></textarea>
+        <textarea id='text-area' name="player_name" cols="50" rows="10" onChange={handelInputs} value={playerdata.name}></textarea>
          </div>
          
-         <Button mr={'5vw'}  onClick={sendData}>Proceed</Button>
-         <Button>Back</Button>
+         <Button bg={'rgb(51, 53, 69)'} color="white" mr={'5vw'}  onClick={sendData}>Proceed</Button>
+         <Button bg={'rgb(51, 53, 69)'} color="white">Back</Button>
          
     </Container>
     

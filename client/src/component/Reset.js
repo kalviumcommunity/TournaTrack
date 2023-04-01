@@ -2,7 +2,7 @@ import { Button, Input } from '@chakra-ui/react';
 import React,{useState} from 'react';
 import {ToastContainer,toast} from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css';
-  
+  import '../component/css/Reset.css'
 const Reset = () => {
  const[email,setEmail] = useState("");
     const handelchange =  () =>{
@@ -27,12 +27,14 @@ const Reset = () => {
     }
 
   return (
-    <div>
-        <Input onChange={(e)=>{setEmail(e.target.value)}} type='email' placeholder='Enter your Email Adress'/>
-        <Button onClick={handelchange}>Reset</Button>
+    <div className='reset-div' >
+      <h4 style={{fontSize:'x-large',fontWeight:'bold'}}>Reset your password</h4>
+        <Input className='reset-input' onChange={(e)=>{setEmail(e.target.value)}} type='email' placeholder='Enter your Email Adress'/>
+        <Button className='reset-button' onClick={handelchange}>Reset</Button>
         <ToastContainer/>
     </div>
   );
 }
 
 export default Reset;
+

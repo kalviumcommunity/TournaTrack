@@ -4,7 +4,8 @@ const dotenv = require('dotenv');
 const mongoose = require('mongoose')
 const cors = require('cors');
 
-dotenv.config({ path: './config.env' })
+// dotenv.config({ path: './config.env' })
+dotenv.config()
 require('./database/connection');
 app.use(express.json());
 app.use(cors());

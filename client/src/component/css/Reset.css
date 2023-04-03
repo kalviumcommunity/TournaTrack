@@ -1,0 +1,25 @@
+.reset-div{
+    
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 4vh;
+    flex-direction: column;
+    height: 50vh;
+}
+
+.reset-input{
+    width: 30%;
+}
+
+.reset-button{
+    width: 30%;
+    color: white;
+    background-color: rgb(51, 53, 69);
+}
+
+@media only screen and (max-width: 750px) {
+.reset-input, .reset-button{
+width: 90%;
+}
+}

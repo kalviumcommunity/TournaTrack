@@ -1,0 +1,13 @@
+
+#typography{
+    font-size: 2em;
+}
+
+@media only screen and (max-width: 1250px) {
+   #background-image{
+    display: none;
+   }
+   #typography{
+    font-size: 1em;
+   }
+    }

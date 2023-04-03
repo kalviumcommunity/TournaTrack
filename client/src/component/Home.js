@@ -3,6 +3,7 @@ import { Link} from 'react-router-dom';
 import Navbar from './Navbar';
 import stadium from '../assest/stadium.jpg'
 import image from '../assest/img.png.jpg'
+import '../component/css/Home.css'
 // import data from '../Data';
 import { Flex, Box, Button, Image, SimpleGrid, Card, CardBody } from '@chakra-ui/react';
 
@@ -180,7 +181,7 @@ export default function Home({value,sport}) {
     <div>
         
         <Box display={'flex'} justifyContent={'space-between'} alignItems={'center'} bg={'hsl(233deg 27% 24%);'} >
-        <Box textColor={'whiteAlpha.800'} fontSize={'30px'} fontWeight={'extrabold'} textAlign={'left'} paddingLeft={'10px'} paddingTop={'20px'}>
+        <Box id='typography' textColor={'whiteAlpha.800'}  fontWeight={'bold'} textAlign={'left'} paddingLeft={'10px'} paddingTop={'20px'}>
         Place where talents meets opportunity
         </Box>
         <Link to ='/register'>
@@ -191,7 +192,7 @@ export default function Home({value,sport}) {
         </Link>
         </Box>
         <Box position={'absolute'} zIndex={'-1'} width={'100%'}>
-          <Image src={stadium} width={'100%'} filter={'opacity(0.9)'} />
+          <Image id='background-image' src={stadium} width={'100%'} filter={'opacity(0.9)'} />
         </Box>
         
         <Box textColor={'whiteAlpha.900'} fontSize={'20'} fontWeight={'bold'} fontStyle={'normal'} textAlign={'left'} paddingLeft={'20px'} >

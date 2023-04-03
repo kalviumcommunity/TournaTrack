@@ -118,13 +118,13 @@ const Register = () => {
 
 
   return (
-    <Container width={'100%'} justifyContent={'center'} align={'center'} bg="green.200" margin={'0'} maxWidth="100%"
+    <Container color={'rgb(51, 53, 69)'} width={'100%'} justifyContent={'center'} align={'center'}  margin={'0'} maxWidth="100%"
     >
-      <Box maxW="40vw" flexDirection="column" justifyContent="center"  >
-        <Heading>Create your Tournament</Heading>
+      <Box maxW="80%" flexDirection="column" justifyContent="center"  >
+        <Heading marginBottom="2vh" >Create your Tournament</Heading>
         {formData.map((data, index) => {
           return (
-            <Box width={'full'} justifyContent={'center'} alignItems={'center'}  >
+            <Box width={'full'} gap="1vh" justifyContent={'center'} alignItems={'center'}  >
 
               <FormControl maxW="100vw" display="flex" flexDirection="column" alignItems={'center'} key={index} >
                 <FormLabel maxW="100vh" justifyContent={'left'}>{data.title}</FormLabel>
@@ -134,7 +134,7 @@ const Register = () => {
 
           )
         })}
-        <Button onClick={PostData}>Create</Button>
+        <Button id='register-button' bg={'rgb(51, 53, 69)'} color="white" margin="3vh auto" onClick={PostData}>Create</Button>
       </Box>
     </Container>
 

@@ -27,3 +27,20 @@
 .og{
     margin-top: 3vh;
 }
+#text-area{
+   
+    border: solid black 2px;
+    padding: 10px;
+}
+
+
+@media only screen and (max-width: 850px) {
+    #register-button{
+        width: 100%;
+    }
+    #text-area{
+        width: 90%;
+        border: solid black 2px;
+        padding: 10px;
+    }
+}

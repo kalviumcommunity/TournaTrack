@@ -1,3 +1,4 @@
+// import Razorpay from "razorpay"
 const express = require('express');
 const app = express();
 const dotenv = require('dotenv');
@@ -10,6 +11,8 @@ require('./database/connection');
 app.use(express.json());
 app.use(cors());
 app.use(require('./router/auth'));
+// app.use("/api", paymentRoute);
+
 
 const port = process.env.PORT;
 
@@ -35,4 +38,9 @@ app.get('/player', (req, res) => {
 });
 app.listen(5000, () => {
     console.log(`server is running at port ${port} `)
+})
+
+app.get("/api/getkey",(req,res)=>{
+     res.status(200).json({key:process.env.RAZORPAY_SECREAT_KEY})
+    // res.send(`You are on payment page right now`)
 })

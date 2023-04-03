@@ -7,13 +7,18 @@ import { Flex, Input,Button,Select,Menu,MenuItem,MenuList,MenuButton,MenuDivider
 
 import { Link } from 'react-router-dom';
 import Home from './Home';
+<<<<<<< HEAD
 import '../component/css/Navbar.css'
+=======
+import jwt_decode from 'jwt-decode'
+>>>>>>> c9145233beeace1d3aba7afc5b55f2b5245fd0c4
 
 
 function Navbar({input, setInput, sportType,setSportType}) {
   // const[sportType ,setSportType] = useState('');
   // console.log(sportType);
-  
+  const name = sessionStorage.getItem('name')
+  const image = sessionStorage.getItem('image')
   return (     <>
               <Flex p={4} flexDirection={'row'} justifyContent={'space-between'} bg={'rgb(51, 53, 69)'}>
                 <Link  to={'/'} >
@@ -27,18 +32,30 @@ function Navbar({input, setInput, sportType,setSportType}) {
                     </Flex>
                 
              
+<<<<<<< HEAD
                 <Flex justifyContent={'space-between'} alignItems='center'>
                 <Select onChange={(e) => {setSportType(e.target.value)}} placeholder='Select sports' color={'black'} bg={'whiteAlpha.900'} >
                          <option value='vollyball'>Volleyball</option>
+=======
+                <Flex justifyContent={'space-between'} alignItems='center' >
+                <Select onChange={(e) => {setSportType(e.target.value)}} placeholder='select sports' color={'black'} bg={'whiteAlpha.900'} mr={5} >
+                         <option value='vollyball'>Vollyball</option>
+>>>>>>> c9145233beeace1d3aba7afc5b55f2b5245fd0c4
                          <option value='cricket'>Cricket</option>
                          <option value='kabaddi'>Kabaddi</option>
                          <option value='badminton'>Badminton</option>
                          <option value='football'>Football</option>
                          <option value='other'>Other sports</option>
                 </Select>
-                  <Link to ='./signin'>
-                  <Button ml={6} bg={'#F84464'} height="4vh">Sign in</Button >
-                  </Link>
+                {
+                  (name && image)?
+                    
+                    <></>:
+                    <Link to ='./signin'>
+                    <Button ml={6} bg={'#F84464'} height="4vh">Sign in</Button >
+                    </Link>
+                }
+                  
                  {/* <HamburgerIcon ml={6} as='HamburgerIcon' color={'white'}  /> */}
                  <Menu ml={6}>
               <MenuButton
@@ -47,22 +64,23 @@ function Navbar({input, setInput, sportType,setSportType}) {
                 variant={'link'}
                 cursor={'pointer'}
                 minW={0}>
-                <Avatar
+                <Avatar 
                   size={'sm'}
-                  src={'https://avatars.dicebear.com/api/male/username.svg'}
+                  src={image}
                 />
               </MenuButton>
               <MenuList alignItems={'center'}>
                 <br />
                 <Center>
-                  <Avatar
+                  <Avatar ml={5}
                     size={'2xl'}
-                    src={'https://avatars.dicebear.com/api/male/username.svg'}
+                    src={image}
+                   
                   />
                 </Center>
                 <br />
                 <Center>
-                  <p>Username</p>
+                  <p>{name}</p>
                 </Center>
                 <br />
                 <MenuDivider />

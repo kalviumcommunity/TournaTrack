@@ -25,6 +25,9 @@ const userSchema = new mongoose.Schema({
     resettoken:{
         type:String
     },
+    picture:{
+        type:String
+    },
     withgoogle:{
      type:Boolean
     },

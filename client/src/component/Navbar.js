@@ -47,18 +47,23 @@ function Navbar({input, setInput, sportType,setSportType}) {
                 }
                   
                  {/* <HamburgerIcon ml={6} as='HamburgerIcon' color={'white'}  /> */}
+
                  <Menu ml={6}>
-              <MenuButton
-                as={Button}
-                rounded={'full'}
-                variant={'link'}
-                cursor={'pointer'}
-                minW={0}>
-                <Avatar 
-                  size={'sm'}
-                  src={image}
-                />
-              </MenuButton>
+                   {
+                    (name && image)? 
+                    <MenuButton
+                    as={Button}
+                    rounded={'full'}
+                    variant={'link'}
+                    cursor={'pointer'}
+                    minW={0}>
+                    <Avatar 
+                      size={'sm'}
+                      src={image}
+                    />
+                  </MenuButton>:<></>
+                   }
+             
               <MenuList alignItems={'center'}>
                 <br />
                 <Center>
@@ -74,6 +79,7 @@ function Navbar({input, setInput, sportType,setSportType}) {
                 </Center>
                 <br />
                 <MenuDivider />
+                
                 <Link to ='./profile'>
                 <MenuItem>My profile</MenuItem>
                 </Link>

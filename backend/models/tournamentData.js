@@ -9,6 +9,10 @@ const tournamentData = new mongoose.Schema({
         type:String,
         required:true
     },
+    Sports:{
+        type:String,
+        required:true
+    },
     entry_fees:{
         type:Number,
         required:true
@@ -41,6 +45,10 @@ const tournamentData = new mongoose.Schema({
     },
     upinumber:{
         type:Number
+    },
+    participents:{
+        type:Array,
+        default:[]
     }
 })
 const Tournament = mongoose.model('TOURNAMENT', tournamentData);

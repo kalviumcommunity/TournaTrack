@@ -28,13 +28,15 @@ function Detail() {
       : 
       <>
       < Flex fontSize = { 'xxx-large'} color = { 'red'} bg = { 'yellow'} justifyContent = { 'center'} alignItems = { 'center'} > {details.tournament_name.toUpperCase() }</Flex >
-      <Flex>{details.start_date}</Flex>
-      <Flex>{details.city}</Flex>
-      <Flex>{details.state}</Flex>
-      <Flex>{details.pincode}</Flex>
+      <Flex> Start date:{details.start_date}</Flex>
+      <Flex>Venu: {details.city}</Flex>
+      <Flex>State: {details.state}</Flex>
+      <Flex>Pincode: {details.pincode}</Flex>
+      <Flex>Organiser contact: {details.contact}</Flex>
+      <Flex>These are the following rules and more information about tournament: {details.rules}</Flex>
       
       
-      <Link to='/playerregister'>
+      <Link to={`/playerregister/${id}`}>
       <Button>Register</Button>
       </Link>
       

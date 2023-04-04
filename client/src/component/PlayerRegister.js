@@ -1,5 +1,5 @@
 import { Container,FormControl,FormLabel,Input,Box,Heading,Stack,RadioGroup,Radio,Button, Flex } from '@chakra-ui/react';
-import { useState } from 'react';
+import { useState,useParams } from 'react';
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import '../component/css/Register.css'

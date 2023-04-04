@@ -134,7 +134,7 @@ const LoginForm = () =>{
             <FormLabel>Password</FormLabel>
                 <Input type={'password'} value={password} onChange={(e) =>setpassword(e.target.value)} placeholder='Enter your password'/> 
         </FormControl>
-        <div  id="signInDiv"></div>
+       <Flex justifyContent="center" margin="2vh auto"> <div  id="signInDiv"></div></Flex> 
         <Stack isInline justifyContent={'space-between'}>
             <Box>
                 <Link to='/signup'>Create your account</Link>

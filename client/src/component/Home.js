@@ -3,6 +3,7 @@ import { Link} from 'react-router-dom';
 import Navbar from './Navbar';
 import stadium from '../assest/stadium.jpg'
 import image from '../assest/img.png.jpg'
+import archery from  '../assest/archery.jpg'
 import '../component/css/Home.css'
 // import data from '../Data';
 import { Flex, Box, Button, Image, SimpleGrid, Card, CardBody } from '@chakra-ui/react';
@@ -125,14 +126,14 @@ export default function Home({value,sport}) {
     },
   ]
   const [myData, setMyData] = useState([])
-  const [dataId, setDataId] = useState(null)
+  const [dataId, setDataId] = useState([])
 
   useEffect(() => {
     const tournamentData = async() =>{
       const res = await fetch(`${process.env.REACT_APP_API}/home`)
       const tData = await res.json()
-      // const finalData=tData.post
-      setDataId(tData)
+       const finalData=tData.post
+      setDataId(finalData)
     }
     tournamentData()
   }, [])
@@ -141,10 +142,10 @@ export default function Home({value,sport}) {
 
   useEffect(() => {
     if(value !== "") {
-      setMyData(data.filter((e)=>{
+      setMyData(dataId.filter((e)=>{
         const search = value;
         const searchcity = e.city.toLowerCase()
-        const type = e.sports.toLowerCase()
+        const type = e.Sports.toLowerCase()
         console.log("array type",type);
         console.log("prop type",sport)
         // value === e.city.toLowerCase()
@@ -156,10 +157,10 @@ export default function Home({value,sport}) {
         } ))
       } else {
         //   setMyData(data)
-        setMyData(data.filter((e)=>{
+        setMyData(dataId.filter((e)=>{
           const search = value;
           const searchcity = e.city.toLowerCase()
-          const type = e.sports.toLowerCase()
+          const type = e.Sports.toLowerCase()
           // console.log("array type",type);
           // console.log("prop type",sport)
           // value === e.city.toLowerCase()
@@ -170,7 +171,7 @@ export default function Home({value,sport}) {
             
           } ))
         }
-      }, [value,sport]);
+      }, [value,dataId,sport]);
       // console.log(myData.length);
     const getData = (e) => {
       myData.find({id: e.id})
@@ -198,8 +199,8 @@ export default function Home({value,sport}) {
         <Box textColor={'whiteAlpha.900'} fontSize={'20'} fontWeight={'bold'} fontStyle={'normal'} textAlign={'left'} paddingLeft={'20px'} >
           Upcoming Tournament
         </Box>
-        <SimpleGrid padding={'15px'} spacing={10} minChildWidth={'250px'}  >
-        {dataId && dataId.post.map((data)=>{
+        {/* <SimpleGrid padding={'15px'} spacing={10} minChildWidth={'250px'}  >
+        {dataId && dataId.map((data)=>{
             return(
               
                 // <Box>
@@ -213,9 +214,12 @@ export default function Home({value,sport}) {
                     <Box textColor={'purple.700'} fontSize={'25'} fontWeight={'bold'} fontStyle={'oblique'} bg="blue.50">
                       {data.tournament_name}
                     </Box>
+                   
+
                     <Flex justifyContent={'center'} alignItems={'center'}>
                       <Box h='100px' w={'200px'} textAlign='center'>
-                        <Image h='100px' w={'200px'} boxShadow={'outline'} rounded={'5px'} src={data.Qr} />
+                        <Image h='100px' w={'200px'} boxShadow={'outline'} rounded={'5px'} src={data.image} />
+                        
                       </Box>
                     </Flex>
                     <Flex justifyContent={'space-evenly'}>
@@ -236,7 +240,7 @@ export default function Home({value,sport}) {
             
             )
           })}
-          </SimpleGrid>
+          </SimpleGrid> */}
       <SimpleGrid padding={'15px'} spacing={10} minChildWidth={'250px'}  >
         {
 
@@ -247,20 +251,20 @@ export default function Home({value,sport}) {
 
             <Card id={data.id} onClick={getData} key={index} height={'200px'}  margin='1%' boxShadow={'outline'} rounded='md' bg={'whiteAlpha.900'} maxW={'350px'} >
               <CardBody>
-              <Link to='/Detail'>
+              <Link to={`/detail/${data._id}`}>
                 <Box key={index}  >
                   <Box textColor={'purple.700'} fontSize={'25'} fontWeight={'bold'} fontStyle={'oblique'} bg="blue.50">
-                    {data.tournamentName}
+                    {data.tournament_name}
                   </Box>
                   <Flex justifyContent={'center'} alignItems={'center'}>
                     <Box h='100px' w={'200px'} textAlign='center'>
-                      <Image h='100px' w={'200px'} boxShadow={'outline'} rounded={'5px'} src={data.Qr} />
+                      <Image h='100px' w={'200px'} boxShadow={'outline'} rounded={'5px'} src={data.image} />
                     </Box>
                   </Flex>
                   <Flex justifyContent={'space-evenly'}>
-                    <Box textColor={'purple.700'} fontSize={'25'} fontWeight={'bold'} fontStyle={'oblique'}>
-                      {data.sports}
-                    </Box>
+                    {/* <Box textColor={'purple.700'} fontSize={'25'} fontWeight={'bold'} fontStyle={'oblique'}>
+                      {data.start_date}
+                    </Box> */}
                     <Box textColor={'purple.700'} fontSize={'25'} fontWeight={'bold'} fontStyle={'oblique'}>
 
                       {data.city}

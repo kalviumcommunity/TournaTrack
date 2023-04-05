@@ -7,11 +7,7 @@ import { Flex, Input,Button,Select,Menu,MenuItem,MenuList,MenuButton,MenuDivider
 
 import { Link } from 'react-router-dom';
 import Home from './Home';
-<<<<<<< HEAD
-import '../component/css/Navbar.css'
-=======
 import jwt_decode from 'jwt-decode'
->>>>>>> c9145233beeace1d3aba7afc5b55f2b5245fd0c4
 
 
 function Navbar({input, setInput, sportType,setSportType}) {
@@ -32,15 +28,9 @@ function Navbar({input, setInput, sportType,setSportType}) {
                     </Flex>
                 
              
-<<<<<<< HEAD
-                <Flex justifyContent={'space-between'} alignItems='center'>
-                <Select onChange={(e) => {setSportType(e.target.value)}} placeholder='Select sports' color={'black'} bg={'whiteAlpha.900'} >
-                         <option value='vollyball'>Volleyball</option>
-=======
                 <Flex justifyContent={'space-between'} alignItems='center' >
                 <Select onChange={(e) => {setSportType(e.target.value)}} placeholder='select sports' color={'black'} bg={'whiteAlpha.900'} mr={5} >
                          <option value='vollyball'>Vollyball</option>
->>>>>>> c9145233beeace1d3aba7afc5b55f2b5245fd0c4
                          <option value='cricket'>Cricket</option>
                          <option value='kabaddi'>Kabaddi</option>
                          <option value='badminton'>Badminton</option>
@@ -57,18 +47,23 @@ function Navbar({input, setInput, sportType,setSportType}) {
                 }
                   
                  {/* <HamburgerIcon ml={6} as='HamburgerIcon' color={'white'}  /> */}
+
                  <Menu ml={6}>
-              <MenuButton
-                as={Button}
-                rounded={'full'}
-                variant={'link'}
-                cursor={'pointer'}
-                minW={0}>
-                <Avatar 
-                  size={'sm'}
-                  src={image}
-                />
-              </MenuButton>
+                   {
+                    (name && image)? 
+                    <MenuButton
+                    as={Button}
+                    rounded={'full'}
+                    variant={'link'}
+                    cursor={'pointer'}
+                    minW={0}>
+                    <Avatar 
+                      size={'sm'}
+                      src={image}
+                    />
+                  </MenuButton>:<></>
+                   }
+             
               <MenuList alignItems={'center'}>
                 <br />
                 <Center>
@@ -84,6 +79,7 @@ function Navbar({input, setInput, sportType,setSportType}) {
                 </Center>
                 <br />
                 <MenuDivider />
+                
                 <Link to ='./profile'>
                 <MenuItem>My profile</MenuItem>
                 </Link>

@@ -1,9 +1,10 @@
 import { Container,FormControl,FormLabel,Input,Box,Heading,Stack,RadioGroup,Radio,Button, Flex } from '@chakra-ui/react';
-import { useState } from 'react';
+import { useState,useParams } from 'react';
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import '../component/css/Register.css'
 function PlayerRegister() {
+  const { id } = useParams()
   const Data = [
     {
       title: "Team name",
@@ -41,8 +42,8 @@ function PlayerRegister() {
     e.preventDefault()
     const{team_name,captain,contact,payment,player_name}=playerdata;
     console.log(playerdata);
-    const res = await fetch(`${process.env.REACT_APP_API}/player`,{
-         method: "POST",
+    const res = await fetch(`${process.env.REACT_APP_API}/player/${id}`,{
+         method: "PUT",
          headers:{
           "Content-Type" : "application/json"
          },

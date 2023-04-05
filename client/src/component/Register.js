@@ -1,5 +1,5 @@
-import { Box, FormControl, FormLabel, Input, Button, Heading, Container } from '@chakra-ui/react';
-import React, { useState } from 'react';
+import { Box, FormControl, FormLabel, Input, Button, Heading, Container,Select } from '@chakra-ui/react';
+import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import "../component/css/Register.css";
 
@@ -10,19 +10,25 @@ const Register = () => {
       title: "Tournament Name",
       type: "text",
       isRequired: "true",
-      name: "Tournamennt name"
+      name: "tournament_name"
     },
     {
       title: "Organiser Name",
       type: "text",
       isRequired: "true",
-      name: "Organiser name"
+      name: "organiser_name"
+    },
+    {
+      title: "Sports",
+      type: "dropdown",
+      isRequired: "true",
+      name: "Sports"
     },
     {
       title: "Entry fees in Rs.",
       type: "number",
       isRequired: "true",
-      name: "Entry fees"
+      name: "entry_fees"
     },
     {
       title: "Email",
@@ -34,65 +40,67 @@ const Register = () => {
       title: "Contact No.",
       type: "number",
       isRequired: "true",
-      name: "Contact no."
+      name: "contact"
     },
     {
       title: "Start date",
       type: "date",
       isRequired: "true",
-      name: "Start date"
+      name: "start_date"
     },
     {
       title: "State",
       type: "text",
       isRequired: "true",
-      name: "State"
+      name: "state"
     },
     {
       title: "City",
       type: "text",
       isRequired: "true",
-      name: "City"
+      name: "city"
     },
     {
       title: "Pincode",
       type: "number",
       isRequired: "true",
-      name: "Pincode"
+      name: "pincode"
     },
     {
       title: "UPI QR code",
       type: "image",
       isRequired: "false",
-      name: "Upi or code"
+      name: "upiQr"
     },
     {
       title: "UPI number",
       type: "number",
       isRequired: "false",
-      name: "Upi number"
+      name: "upinumber"
     }
   ]
   const navigate = useNavigate();
-  const [details, setDetails] = useState({ tournament_name: "", organiser_name: "", entry_fees: "", email: "", contact: "", start_date: "", state: "", city: "", pincode: "", upiQr: "", upinumber: "" })
+  const [details, setDetails] = useState({ tournament_name: "", organiser_name: "",Sports: "",entry_fees: "", email: "", contact: "", start_date: "", state: "", city: "", pincode: "", upiQr: "", upinumber: "" })
   let name, value;
   const handelInputs = (e) => {
-    console.log(e)
+
     name = e.target.name;
     value = e.target.value;
+    console.log(name)
     setDetails({ ...details, [name]: value });
 
   }
   const PostData = async (e) => {
     e.preventDefault();
-    const { tournament_name, organiser_name, entry_fees, email, contact, start_date, state, city, pincode, upiQr, upinumber } = details;
+    console.log(details);
+    const { tournament_name, organiser_name,Sports, entry_fees, email, contact, start_date, state, city, pincode, upiQr, upinumber } = details;
     const res = await fetch(`${process.env.REACT_APP_API}/create`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json"
       },
       body: JSON.stringify({
-        tournament_name, organiser_name, entry_fees, email, contact, start_date, state, city, pincode, upiQr, upinumber
+        tournament_name, organiser_name,Sports, entry_fees, email, contact, start_date, state, city, pincode, upiQr, upinumber
       })
     });
 
@@ -128,10 +136,21 @@ const Register = () => {
 
               <FormControl maxW="100vw" display="flex" flexDirection="column" alignItems={'center'} key={index} >
                 <FormLabel maxW="100vh" justifyContent={'left'}>{data.title}</FormLabel>
-                <Input maxW="40vh" onChange={handelInputs} type={data.type} isRequired={data.isRequired} name={data.name} />
-              </FormControl>
-            </Box>
 
+              {data.type==="dropdown"?
+               <Select onChange={handelInputs} placeholder='select sports' color={'black'} maxW="40vh" name={data.name}>
+               <option value='vollyball'>Vollyball</option>
+               <option value='cricket'>Cricket</option>
+               <option value='kabaddi'>Kabaddi</option>
+               <option value='badminton'>Badminton</option>
+               <option value='football'>Football</option>
+               <option value='other'>Other sports</option>
+           </Select>: <Input maxW="40vh" onChange={handelInputs} type={data.type} isRequired={data.isRequired} name={data.name} />}
+        
+              </FormControl>
+             
+            </Box>
+             
           )
         })}
         <Button id='register-button' bg={'rgb(51, 53, 69)'} color="white" margin="3vh auto" onClick={PostData}>Create</Button>

@@ -49,7 +49,14 @@ const tournamentData = new mongoose.Schema({
     participents:{
         type:Array,
         default:[]
-    }
+    },
+    rules:{
+     type:String
+    },
+   image:{
+    type:String,
+    
+   }
 })
 const Tournament = mongoose.model('TOURNAMENT', tournamentData);
 module.exports = Tournament;

@@ -1,10 +1,22 @@
-import { Box, FormControl, FormLabel, Input, Button, Heading, Container,Select } from '@chakra-ui/react';
+import { Box, FormControl, FormLabel, Input, Button, Heading, Container,Select,Flex } from '@chakra-ui/react';
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import "../component/css/Register.css";
 
-
 const Register = () => {
+  const [image,setImage] = useState("")
+  const archery_img="http://res.cloudinary.com/dfl44vyoj/image/upload/v1680591798/bkhzlgfxkmpxtckjvhv7.jpg";
+  const athletics_img ="http://res.cloudinary.com/dfl44vyoj/image/upload/v1680591954/wyqrns7ihqaxaympm562.jpg";
+  const badminton_img=  "http://res.cloudinary.com/dfl44vyoj/image/upload/v1680592070/kwlduvi8x4jyrysetrbe.jpg"
+  const basketball_img = "http://res.cloudinary.com/dfl44vyoj/image/upload/v1680592070/kwlduvi8x4jyrysetrbe.jpg";
+  const cricket_img =   "https://res.cloudinary.com/dfl44vyoj/image/upload/v1680592142/sppefkwgoqcdngrksykp.jpg";
+  const football_img= "http://res.cloudinary.com/dfl44vyoj/image/upload/v1680592233/spkdhicgy3gxmc9craxt.jpg ";
+  const handball_img ="http://res.cloudinary.com/dfl44vyoj/image/upload/v1680592281/sfwcsxnsla0zakh7oozc.jpg"
+  const hockey_img="http://res.cloudinary.com/dfl44vyoj/image/upload/v1680592332/ih14jb0bpdebr7qxkkjn.jpg"
+  const kabaddi_img="http://res.cloudinary.com/dfl44vyoj/image/upload/v1680592368/vew6ej8lr38ly32vl0s1.jpg "
+  const kho_img="http://res.cloudinary.com/dfl44vyoj/image/upload/v1680592423/fqeboogtptl5jgxs5gfo.jpg"
+  const vollyball_img="http://res.cloudinary.com/dfl44vyoj/image/upload/v1680592459/xtirjp2rddelcvos4ecj.jpg"
+
   const formData = [
     {
       title: "Tournament Name",
@@ -79,8 +91,11 @@ const Register = () => {
       name: "upinumber"
     }
   ]
+  const newSports=["Archery","Athletics","Badminton","Basketball","Cricket","Football","Handball","Hockey","Kabaddi","Kho-kho","Vollyball"]
+  const sports_image = [archery_img,athletics_img,badminton_img,basketball_img,cricket_img,football_img,handball_img,hockey_img,kabaddi_img,kho_img
+ ,vollyball_img];
   const navigate = useNavigate();
-  const [details, setDetails] = useState({ tournament_name: "", organiser_name: "",Sports: "",entry_fees: "", email: "", contact: "", start_date: "", state: "", city: "", pincode: "", upiQr: "", upinumber: "" })
+  const [details, setDetails] = useState({ tournament_name: "", organiser_name: "",Sports: "",entry_fees: "", email: "", contact: "", start_date: "", state: "", city: "", pincode: "", upiQr: "", upinumber: "" ,rules:""})
   let name, value;
   const handelInputs = (e) => {
 
@@ -92,15 +107,28 @@ const Register = () => {
   }
   const PostData = async (e) => {
     e.preventDefault();
+    
     console.log(details);
-    const { tournament_name, organiser_name,Sports, entry_fees, email, contact, start_date, state, city, pincode, upiQr, upinumber } = details;
+    const { tournament_name, organiser_name,Sports, entry_fees, email, contact, start_date, state, city, pincode, upiQr, upinumber,rules } = details;
+    console.log("newSports: ", newSports)
+    const index = newSports.findIndex(checkindex);
+    function checkindex(Sport) {
+      if(Sport===Sports)
+      
+      console.log(Sports)
+      return Sport;
+    }
+    console.log(index)  
+    const imageLink=(sports_image[index])
+    // console.log(image)
+
     const res = await fetch(`${process.env.REACT_APP_API}/create`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json"
       },
       body: JSON.stringify({
-        tournament_name, organiser_name,Sports, entry_fees, email, contact, start_date, state, city, pincode, upiQr, upinumber
+        tournament_name, organiser_name,Sports, entry_fees, email, contact, start_date, state, city, pincode, upiQr, upinumber,rules,imageLink
       })
     });
 
@@ -139,20 +167,29 @@ const Register = () => {
 
               {data.type==="dropdown"?
                <Select onChange={handelInputs} placeholder='select sports' color={'black'} maxW="40vh" name={data.name}>
-               <option value='vollyball'>Vollyball</option>
-               <option value='cricket'>Cricket</option>
-               <option value='kabaddi'>Kabaddi</option>
-               <option value='badminton'>Badminton</option>
-               <option value='football'>Football</option>
-               <option value='other'>Other sports</option>
+                         <option value='Archery'>Archery</option>
+                         <option value='Athletics'>Athletics</option>
+                         <option value='Badminton'>Badminton</option>
+                         <option value='Basketball'>Basketball</option>
+                         <option value='Cricket'>Cricket</option>
+                         <option value='Football'>Football</option>
+                         <option value='Handball'>Handball</option>
+                         <option value='Hockey'>Hockey</option>
+                         <option value='kabaddi'>Kabaddi</option>
+                         <option value='Kho-kho'>Kho-kho</option>
+                         <option value='vollyball'>Vollyball</option>    
            </Select>: <Input maxW="40vh" onChange={handelInputs} type={data.type} isRequired={data.isRequired} name={data.name} />}
-        
+                   
               </FormControl>
              
             </Box>
              
           )
         })}
+         <Box >
+            <Flex fontSize={20} justifyContent={'center'} mt={5} >Rules and other details</Flex>
+        <textarea id='text-area' name="rules" cols="50" rows="10" onChange={handelInputs} value={details.name}></textarea>
+         </Box>
         <Button id='register-button' bg={'rgb(51, 53, 69)'} color="white" margin="3vh auto" onClick={PostData}>Create</Button>
       </Box>
     </Container>

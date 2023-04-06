@@ -113,12 +113,12 @@ router.post('/signin', async (req, res) => {
 })
 //tournamentdata
 router.post('/create',async(req,res) =>{
-    const{ tournament_name,organiser_name,Sports,entry_fees,email,contact,start_date,state,city,pincode,upiQr,upinumber}=req.body;
+    const{ tournament_name,organiser_name,Sports,entry_fees,email,contact,start_date,state,city,pincode,upiQr,upinumber,rules,imageLink}=req.body;
     if (!tournament_name || !organiser_name || !Sports || !entry_fees || !contact || !start_date || !state || !city || !pincode ) {
         return res.status(422).json({ error: "please fill the required details" })
     }
     try{
-        const tournament = new Tournament({ tournament_name,organiser_name,Sports,entry_fees,email,contact,start_date,state,city,pincode,upiQr,upinumber })
+        const tournament = new Tournament({ tournament_name,organiser_name,Sports,entry_fees,email,contact,start_date,state,city,pincode,upiQr,upinumber,rules,image:imageLink })
 
         const createTournamenr = await tournament.save()
         if (createTournamenr) {

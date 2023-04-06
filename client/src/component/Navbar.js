@@ -30,12 +30,17 @@ function Navbar({input, setInput, sportType,setSportType}) {
              
                 <Flex justifyContent={'space-between'} alignItems='center' >
                 <Select onChange={(e) => {setSportType(e.target.value)}} placeholder='select sports' color={'black'} bg={'whiteAlpha.900'} mr={5} >
-                         <option value='vollyball'>Vollyball</option>
-                         <option value='cricket'>Cricket</option>
-                         <option value='kabaddi'>Kabaddi</option>
+                         <option value='Archery'>Archery</option>
+                         <option value='Athletics'>Athletics</option>
                          <option value='badminton'>Badminton</option>
+                         <option value='Basketball'>Basketball</option>
+                         <option value='cricket'>Cricket</option>
                          <option value='football'>Football</option>
-                         <option value='other'>Other sports</option>
+                         <option value='Handball'>Handball</option>
+                         <option value='Hockey'>Hockey</option>
+                         <option value='kabaddi'>Kabaddi</option>
+                         <option value='Kho-kho'>Kho-kho</option>
+                         <option value='vollyball'>Vollyball</option>    
                 </Select>
                 {
                   (name && image)?

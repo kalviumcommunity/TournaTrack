@@ -153,40 +153,15 @@ router.get('/home/:id',(req,res)=>{
 })
 
 // player data
-// router.post('/player', async(req,res)=>{
-//     const{team_name,captain,contact,payment,player_name}=req.body;
-//     if (!team_name || !captain||!contact || !player_name) {
-//         return res.status(422).json({ error: "please fill the required details" })
-//     }
-//     try{
-//         const player = new Player({team_name,captain,contact,payment,player_name})
-
-//         const playerRegister = await player.save()
-//         if (playerRegister) {
-//             res.status(201).json({ message: "Team registraion sucessfully" });
-//         }
-//         else {
-//             res.status(500).json({ error: "Sorry not registerd, Try again" })
-//         }
-//     }
-//     catch(err){
-//         console.log(err);
-//     }
-
-// })
-router.put('/player/:id', async(req,res)=>{
+router.post('/player', async(req,res)=>{
     const{team_name,captain,contact,payment,player_name}=req.body;
     if (!team_name || !captain||!contact || !player_name) {
         return res.status(422).json({ error: "please fill the required details" })
     }
     try{
-        const player = await Tournament.findOne({_id:req.params.id});
-        console.log(player);
-        const arr=player.participents;
-        arr.push({team_name,captain,contact,payment,player_name});
-        console.log(arr);
-        player.participents=arr;
-        const playerRegister=await player.save();
+        const player = new Player({team_name,captain,contact,payment,player_name})
+
+        const playerRegister = await player.save()
         if (playerRegister) {
             res.status(201).json({ message: "Team registraion sucessfully" });
         }

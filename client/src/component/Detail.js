@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 // import data from '../Data';
-import { Box, Button, Flex } from '@chakra-ui/react';
+import { Box, Button, Card, Center, Flex } from '@chakra-ui/react';
 import { Link, useLocation, useParams } from 'react-router-dom';
 function Detail() {
   const [details, setDetails] = useState(null);
@@ -26,22 +26,29 @@ function Detail() {
       details === null ?
       <div>Loading</div>
       : 
-      <>
-      < Flex fontSize = { 'xxx-large'} color = { 'red'} bg = { 'yellow'} justifyContent = { 'center'} alignItems = { 'center'} > {details.tournament_name.toUpperCase() }</Flex >
-      <Flex> Start date:{details.start_date}</Flex>
-      <Flex>Venu: {details.city}</Flex>
-      <Flex>State: {details.state}</Flex>
-      <Flex>Pincode: {details.pincode}</Flex>
-      <Flex>Organiser contact: {details.contact}</Flex>
-      <Flex>These are the following rules and more information about tournament: {details.rules}</Flex>
-      
-      
+      <Box backgroundImage={details.image} height={'100vh'} backgroundSize={'100vw 100vh'} backgroundRepeat={'no-repeat'}  >
+        <Flex textAlign={'center'} justifyContent={'center'} pt={'5rem'}>
+        <Card width={'50vw'} height={'auto'}>
+      < Flex  fontSize = { 'xxx-large'} fontweight={'700'} color = { 'red'}  justifyContent = { 'center'} alignItems = { 'center'} > {details.tournament_name.toUpperCase() }</Flex >
+      <Flex pl ={"1rem"} > Start date:{details.start_date}</Flex>
+      <Flex  pl ={"1rem"}>Venu: {details.city}</Flex>
+      <Flex  pl ={"1rem"}>State: {details.state}</Flex>
+      <Flex pl ={"1rem"}>Pincode: {details.pincode}</Flex>
+      <Flex pl ={"1rem"}>Organiser contact: {details.contact}</Flex>
+      <Flex pl ={"1rem"}>These are the following rules and more information about tournament:</Flex>
+      {details.rules.map((res)=>{
+        return(
+          <Box>{res}</Box>
+        ) 
+      })}
+      </Card>
+      </Flex>
       <Link to={`/playerregister/${id}`}>
       <Button>Register</Button>
       </Link>
       
       <Button>Back</Button>
-      </>
+      </Box>
     }
       </Box >
      

@@ -20,6 +20,7 @@ import Created from './component/Created';
 import Premium from './component/Premium';
 import PaymentForm from './component/PaymentForm';
 import PaymentSuccess from './component/PaymentSucces';
+import Sechdule from './component/Sechdule';
 
 function App() {
   const[input, setInput] =  useState("");
@@ -37,7 +38,7 @@ function App() {
         <Route path = '/playerregister/:id' element = {<PlayerRegister/>}/>
         <Route path='/reset' element={<Reset/>} /> 
         <Route path='/profile' element={<Profile/>} /> 
-        {/* <Route path='/tournament' element={<Tournament/>} />  */}
+        <Route path='/sechdule' element={<Sechdule/>}/>
         <Route path='/about' element={<AboutUs/>} /> 
         <Route path='/premium' element={<Premium/>} /> 
         <Route path='/payment' element={<PaymentForm/>} />

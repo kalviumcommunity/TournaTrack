@@ -1,7 +1,7 @@
 import { Container,FormControl,FormLabel,Input,Box,Heading,Stack,RadioGroup,Radio,Button, Flex } from '@chakra-ui/react';
-import { useState,useParams } from 'react';
+import { useState } from 'react';
 import React from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate,useParams } from 'react-router-dom';
 import '../component/css/Register.css'
 function PlayerRegister() {
   const { id } = useParams()

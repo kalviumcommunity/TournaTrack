@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import Tournament from './Tournament';
-
+import { Link} from 'react-router-dom';
+import { Button, Flex } from '@chakra-ui/react';
 const Created = () => {
   const [data, setData] = useState();
   // const [pData, setPData] = useState([]);
@@ -19,10 +20,16 @@ const Created = () => {
   return (
     <div>
       <Tournament />
+      <Link to ='/sechdule'>
+      <Flex justifyContent={'flex-end'} alignItems={'baseline'} mt='5vh' mr='5vw'>
+          <Button
+            borderRadius={0} color={'white'} bg={'#7C6A96'} boxShadow={'2px black'} _hover={{}} marginBottom={'20px'}>Sechdule matches</Button>
+        </Flex>
+        </Link>
       {data &&
         data.map((elem, ind) => {
           return <div key={ind}>
-          {
+           {
               elem.participents.length > 0 &&
               elem.participents.map((e, i) => {
                 console.log(e);
@@ -39,7 +46,7 @@ const Created = () => {
           </div>
         })
       }
-
+        
     </div>
   );
 }

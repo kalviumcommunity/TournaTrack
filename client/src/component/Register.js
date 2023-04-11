@@ -1,7 +1,9 @@
-import { Box, FormControl, FormLabel, Input, Button, Heading, Container,Select,Flex } from '@chakra-ui/react';
+import { Box, FormControl, FormLabel, Input, Button, Heading, Container,Select,Flex ,List,ListItem} from '@chakra-ui/react';
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+
 import "../component/css/Register.css";
+import Test from './Test';
 
 const Register = () => {
   const [image,setImage] = useState("")
@@ -91,6 +93,17 @@ const Register = () => {
       name: "upinumber"
     }
   ]
+  const [rules, setRules] = useState([]);
+
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    const newRule = event.target.rule.value;
+    if (newRule.trim() !== "") {
+      setRules([...rules, newRule]);
+      event.target.reset();
+    }
+  };
+
   const newSports=["Archery","Athletics","Badminton","Basketball","Cricket","Football","Handball","Hockey","Kabaddi","Kho-kho","Vollyball"]
   const sports_image = [archery_img,athletics_img,badminton_img,basketball_img,cricket_img,football_img,handball_img,hockey_img,kabaddi_img,kho_img
  ,vollyball_img];
@@ -109,14 +122,15 @@ const Register = () => {
     e.preventDefault();
     
     console.log(details);
-    const { tournament_name, organiser_name,Sports, entry_fees, email, contact, start_date, state, city, pincode, upiQr, upinumber,rules } = details;
+    const { tournament_name, organiser_name,Sports, entry_fees, email, contact, start_date, state, city, pincode, upiQr, upinumber,rule } = details;
     console.log("newSports: ", newSports)
     const index = newSports.findIndex(checkindex);
     function checkindex(Sport) {
-      if(Sport===Sports)
+      if(Sport===Sports){
       
       console.log(Sports)
       return Sport;
+      }
     }
     console.log(index)  
     const imageLink=(sports_image[index])
@@ -175,10 +189,10 @@ const Register = () => {
                          <option value='Football'>Football</option>
                          <option value='Handball'>Handball</option>
                          <option value='Hockey'>Hockey</option>
-                         <option value='kabaddi'>Kabaddi</option>
+                         <option value='Kabaddi'>Kabaddi</option>
                          <option value='Kho-kho'>Kho-kho</option>
                          <option value='vollyball'>Vollyball</option>    
-           </Select>: <Input maxW="40vh" onChange={handelInputs} type={data.type} isRequired={data.isRequired} name={data.name} />}
+           </Select>: <Input maxW="40vh" onChange={handelInputs} type={data.type} isRequired={data.isRequired} name={data.name} fontSize={{base:'small',md:'medium', lg:'larger'}}/>}
                    
               </FormControl>
              
@@ -187,11 +201,28 @@ const Register = () => {
           )
         })}
          <Box >
-            <Flex fontSize={20} justifyContent={'center'} mt={5} >Rules and other details</Flex>
-        <textarea id='text-area' name="rules" cols="50" rows="10" onChange={handelInputs} value={details.name}></textarea>
+            {/* <Flex fontSize={20} justifyContent={'center'} mt={5} >Rules and other details</Flex> */}
+            <Box m={4}>
+      <form onSubmit={handleSubmit}>
+        <FormControl>
+          <FormLabel textAlign={'center'}>Enter a rules and other details</FormLabel>
+          <Input maxW="40vh" type="text" name="rule" placeholder="Type your rule here"  wid/>
+        </FormControl>
+        <Button type="submit" mt={2}>
+          Add rule
+        </Button>
+      </form>
+      <List mt={4}>
+        {rules.map((rule, index) => (
+          <ListItem key={index}>{rule}</ListItem>
+        ))}
+      </List>
+    </Box>
+        {/* <textarea id='text-area' name="rules" cols="50" rows="10" onChange={handelInputs} value={details.name}></textarea> */}
          </Box>
         <Button id='register-button' bg={'rgb(51, 53, 69)'} color="white" margin="3vh auto" onClick={PostData}>Create</Button>
       </Box>
+      
     </Container>
 
   );

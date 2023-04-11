@@ -51,7 +51,7 @@ const tournamentData = new mongoose.Schema({
         default:[]
     },
     rules:{
-     type:String
+     type:Array
     },
    image:{
     type:String,

@@ -1,5 +1,5 @@
 import React,{useEffect,useState} from 'react';
-import { Link} from 'react-router-dom';
+import { Link,useNavigate} from 'react-router-dom';
 import Navbar from './Navbar';
 import stadium from '../assest/stadium.jpg'
 import image from '../assest/img.png.jpg'
@@ -10,6 +10,7 @@ import { Flex, Box, Button, Image, SimpleGrid, Card, CardBody } from '@chakra-ui
 
 export default function Home({value,sport}) {
 // const [testData,setTestData] = useState("")
+const navigate = useNavigate()
   const data = [
     {
       id: 1,
@@ -127,6 +128,15 @@ export default function Home({value,sport}) {
   ]
   const [myData, setMyData] = useState([])
   const [dataId, setDataId] = useState([])
+  const createTournament = () =>{
+    const name = sessionStorage.getItem('name')
+    if(name){
+      navigate ('/register')
+    }
+    else{
+      navigate('/signin')
+    }
+  }
 
   useEffect(() => {
     const tournamentData = async() =>{
@@ -177,7 +187,6 @@ export default function Home({value,sport}) {
       myData.find({id: e.id})
       dataId.find({id:e.id})
     }
-
   return (
     <div>
         
@@ -185,12 +194,12 @@ export default function Home({value,sport}) {
         <Box id='typography' textColor={'whiteAlpha.800'}  fontWeight={'bold'} textAlign={'left'} paddingLeft={'10px'} paddingTop={'20px'}>
         Place where talents meets opportunity
         </Box>
-        <Link to ='/register'>
+       
         <Flex justifyContent={'flex-end'} mt='5vh' mr='5vw'>
           <Button
-            borderRadius={0} color={'white'} bg={'#7C6A96'} boxShadow={'2px black'} _hover={{}} marginBottom={'20px'}>Create Tournament</Button>
+            borderRadius={0} color={'white'} bg={'#7C6A96'} boxShadow={'2px black'} _hover={{}} marginBottom={'20px'} onClick={()=>createTournament()}>Create Tournament</Button>
         </Flex>
-        </Link>
+     
         </Box>
         <Box position={'absolute'} zIndex={'-1'} width={'100%'}>
           <Image id='background-image' src={stadium} width={'100%'} filter={'opacity(0.9)'} />

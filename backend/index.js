@@ -17,9 +17,21 @@ app.use(require('./router/auth'));
 const port = process.env.PORT;
 
 const middleware = (req, res, next) => {
-    console.log(`hello my middleware`)
+    // console.log(`hello my middleware`)
+    const{authorization}=req.headers;
+    if(!authorizaton){
+        res.send({"error":"Authorization is required"});
+    }
+    const token =authorization.split(' ')[1]
+    try{
+        const{_id}=jwd.verify(token,KEY)
+        next()
+    }
+    catch(err){
+        res.send({"error":"tokem is required"})
+    }
 }
-middleware();
+
 
 app.get('/register', (req, res) => {
     res.send(`hello signup world from server`);
@@ -30,10 +42,10 @@ app.get('/signin', (req, res) => {
 app.get('/', (req, res) => {
     res.send(`hello  world from server on homepage`);
 });
-app.get('/create', (req, res) => {
+app.get('/create', middleware ,(req, res) => {
     res.send(`hello  world from server on create tournament`);
 });
-app.get('/player', (req, res) => {
+app.get('/player/:id',middleware, (req, res) => {
     res.send(`hello  world from server on player register`);
 });
 app.listen(5000, () => {

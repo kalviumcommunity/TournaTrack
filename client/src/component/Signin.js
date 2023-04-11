@@ -78,7 +78,7 @@ const LoginForm = () =>{
         navigate("/")
       })
       console.log("Encode Jwt token: "+response.credential)
-      var userObject = jwt_decode(response.credential)
+      const userObject = jwt_decode(response.credential)
       console.log(userObject);
       setUser(userObject);
       sessionStorage.setItem('name',userObject.name)
@@ -115,11 +115,24 @@ const LoginForm = () =>{
         })
       });
       const data = await res.json();
+      console.log(data)
       if(res.status === 400 || !data){
+      
         window.alert("inavlid Credentials")
+
       }
+      else if( !email || !password){
+        window.alert("Please fill the required details")
+      }
+      
+
       else{
         window.alert("Login SuccessFull");
+      // console.log("Encode Jwt token: "+response.credential)
+      const userObject = jwt_decode(data.user)
+      console.log(userObject);
+      setUser(userObject);
+      sessionStorage.setItem('name',userObject.name)
         navigate("/");
       }
     }

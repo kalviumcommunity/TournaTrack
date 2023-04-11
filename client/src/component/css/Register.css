@@ -8,7 +8,7 @@
 .name{
     display: flex;
     flex-direction: row;
-    justify-content: space-evenly
+    justify-content: space-evenly;
 }
 .org{
     display: flex;
@@ -18,7 +18,6 @@
 }
 .ogname{
     display: flex;
-   
     flex-wrap: wrap;
     margin-left: 2vw;
     margin-top: 2vh;
@@ -27,8 +26,7 @@
 .og{
     margin-top: 3vh;
 }
-#text-area{
-   
+#text-area{  
     border: solid black 2px;
     padding: 10px;
 }

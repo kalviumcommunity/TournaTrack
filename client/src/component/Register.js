@@ -192,7 +192,7 @@ const Register = () => {
                          <option value='Kabaddi'>Kabaddi</option>
                          <option value='Kho-kho'>Kho-kho</option>
                          <option value='vollyball'>Vollyball</option>    
-           </Select>: <Input maxW="40vh" onChange={handelInputs} type={data.type} isRequired={data.isRequired} name={data.name} />}
+           </Select>: <Input maxW="40vh" onChange={handelInputs} type={data.type} isRequired={data.isRequired} name={data.name} fontSize={{base:'small',md:'medium', lg:'larger'}}/>}
                    
               </FormControl>
              

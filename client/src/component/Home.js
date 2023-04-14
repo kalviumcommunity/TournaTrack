@@ -5,6 +5,7 @@ import stadium from '../assest/stadium.jpg'
 import image from '../assest/img.png.jpg'
 import archery from  '../assest/archery.jpg'
 import '../component/css/Home.css'
+import { Typewriter } from 'react-simple-typewriter'
 // import data from '../Data';
 import { Flex, Box, Button, Image, SimpleGrid, Card, CardBody } from '@chakra-ui/react';
 
@@ -192,7 +193,21 @@ const navigate = useNavigate()
         
         <Box display={'flex'} justifyContent={'space-between'} alignItems={'center'} bg={'hsl(233deg 27% 24%);'} >
         <Box id='typography' textColor={'whiteAlpha.800'}  fontWeight={'bold'} textAlign={'left'} paddingLeft={'10px'} paddingTop={'20px'}>
-        Place where talents meets opportunity
+       
+        {/*
+        experience  the  thrill of victory.
+        are you ready for the challenge.
+        */}
+        <Typewriter
+            words={[' Place where talents meets opportunity.', ' Discover the champion within.', ' Experience  the  thrill of victory.', 'Are you ready for the challenge?',' Find your edge.']}
+            loop={25}
+            cursor
+            cursorStyle='|'
+            typeSpeed={100}
+            deleteSpeed={90}
+            delaySpeed={50}
+           
+          />
         </Box>
        
         <Flex justifyContent={'flex-end'} mt='5vh' mr='5vw'>

@@ -8,7 +8,7 @@ import { Flex, Input,Button,Select,Menu,MenuItem,MenuList,MenuButton,MenuDivider
 import { Link,useNavigate } from 'react-router-dom';
 import Home from './Home';
 import jwt_decode from 'jwt-decode';
-import ttlogo from '../assest/ttlogo.svg'
+import logo from '../assest/ttlogo.svg'
 
 
 function Navbar({input, setInput, sportType,setSportType}) {
@@ -30,7 +30,7 @@ const handelLogout = ()=>{
               <Flex p={4} flexDirection={'row'} justifyContent={'space-between'} bg={'rgb(51, 53, 69)'} color={''}>
                 <Link  to={'/'} >
                 <Flex alignItems={'center'} color="white" ml={5} >
-                  <Image height ={50}src= {ttlogo}/> 
+                  <Image height ={50}src= {logo}/> 
                     </Flex>
                     </Link>
                     <Flex display={{base:'none',md:'flex',lg:'flex'}} id='search-button-pc' flexDirection={'row'} alignItems={'center'} bg={'white'} paddingLeft="1vw" borderRadius={8}>

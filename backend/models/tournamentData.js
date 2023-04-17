@@ -11,7 +11,8 @@ const tournamentData = new mongoose.Schema({
     },
     Sports:{
         type:String,
-        required:true
+        required:true,
+        index:true
     },
     entry_fees:{
         type:Number,
@@ -48,7 +49,8 @@ const tournamentData = new mongoose.Schema({
     },
     participents:{
         type:Array,
-        default:[]
+        default:[],
+        
     },
     rules:{
      type:Array

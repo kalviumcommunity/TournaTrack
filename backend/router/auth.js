@@ -13,6 +13,7 @@ const sendgridtransport = require("nodemailer-sendgrid-transport")
 const User = require('../models/userSchema');
 const Payment = require('../models/paymentScehma')
 const ID = process.env.ID
+const fs = require('fs')
 router.get('/signin', (req, res) => {
     res.send(`hello login world from server but router`);
 });
@@ -125,6 +126,7 @@ router.post('/create',async(req,res) =>{
         const createTournamenr = await tournament.save()
         if (createTournamenr) {
             res.status(201).json({ message: "Tournament Created" });
+            fs.appendFileSync("Tournament.txt", "Tournament created succesfully")
         }
         else {
             res.status(500).json({ error: "Try again" })

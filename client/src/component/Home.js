@@ -129,6 +129,7 @@ const navigate = useNavigate()
   ]
   const [myData, setMyData] = useState([])
   const [dataId, setDataId] = useState([])
+  const [loading, setLoading] = useState(true);
   const createTournament = () =>{
     const name = sessionStorage.getItem('name')
     if(name){
@@ -145,6 +146,7 @@ const navigate = useNavigate()
       const tData = await res.json()
        const finalData=tData.post
       setDataId(finalData)
+      setLoading(false);
     }
     tournamentData()
   }, [])
@@ -157,12 +159,14 @@ const navigate = useNavigate()
         const search = value;
         const searchcity = e.city.toLowerCase()
         const type = e.Sports.toLowerCase()
+        const name = e.tournament_name.toLowerCase()
         console.log("array type",type);
-        console.log("prop type",sport)
+        console.log("prop type",sport);
+       
         // value === e.city.toLowerCase()
         return(
-          (sport)?searchcity.includes(search) && searchcity.startsWith(search) && type===sport :
-          searchcity.includes(search) || searchcity.startsWith(search)
+          (sport)?searchcity.includes(search) && searchcity.startsWith(search) && type===sport   : 
+          searchcity.includes(search) || searchcity.startsWith(search) || name.includes(search) || name.startsWith(search)
           )
           
         } ))
@@ -266,44 +270,91 @@ const navigate = useNavigate()
           })}
           </SimpleGrid> */}
       <SimpleGrid padding={'15px'} spacing={10} minChildWidth={'250px'}  >
+        {loading ? <div class="loader">
+<div class="loader-square"></div>
+<div class="loader-square"></div>
+<div class="loader-square"></div>
+<div class="loader-square"></div>
+<div class="loader-square"></div>
+<div class="loader-square"></div>
+<div class="loader-square"></div>
+</div>
+: <> {
+
+  myData.length==0?<Flex as={'h1'} fontSize={'50px'} color={'white'} >Sorry no tournament found.</Flex>:
+  myData.map((data, index) => {
+    // console.log(data.Qr)
+    return (
+
+      <Card id={data.id} onClick={getData} key={index} height={'200px'}  margin='1%' boxShadow={'outline'} rounded='md' bg={'whiteAlpha.900'} maxW={'350px'} >
+        <CardBody>
+        <Link to={`/detail/${data._id}`}>
+          <Box key={index}  >
+            <Box textColor={'purple.700'} fontSize={'25'} fontWeight={'bold'} fontStyle={'oblique'} bg="blue.50">
+              {data.tournament_name}
+            </Box>
+            <Flex justifyContent={'center'} alignItems={'center'}>
+              <Box h='100px' w={'200px'} textAlign='center'>
+                <Image h='100px' w={'200px'} boxShadow={'outline'} rounded={'5px'} src={data.image} />
+              </Box>
+            </Flex>
+            <Flex justifyContent={'space-evenly'}>
+              {/* <Box textColor={'purple.700'} fontSize={'25'} fontWeight={'bold'} fontStyle={'oblique'}>
+                {data.start_date}
+              </Box> */}
+              <Box textColor={'purple.700'} fontSize={'25'} fontWeight={'bold'} fontStyle={'oblique'}>
+
+                {data.city}
+              </Box>
+            </Flex>
+          </Box>
+
+        </Link>
+        </CardBody>
+      </Card>
+
+    )
+
+  })
+} </> }
         {
 
-        myData.length==0?<Flex as={'h1'} fontSize={'50px'} color={'white'} >Sorry no tournament found.</Flex>:
-        myData.map((data, index) => {
-          // console.log(data.Qr)
-          return (
+        // myData.length==0?<Flex as={'h1'} fontSize={'50px'} color={'white'} >Sorry no tournament found.</Flex>:
+        // myData.map((data, index) => {
+        //   // console.log(data.Qr)
+        //   return (
 
-            <Card id={data.id} onClick={getData} key={index} height={'200px'}  margin='1%' boxShadow={'outline'} rounded='md' bg={'whiteAlpha.900'} maxW={'350px'} >
-              <CardBody>
-              <Link to={`/detail/${data._id}`}>
-                <Box key={index}  >
-                  <Box textColor={'purple.700'} fontSize={'25'} fontWeight={'bold'} fontStyle={'oblique'} bg="blue.50">
-                    {data.tournament_name}
-                  </Box>
-                  <Flex justifyContent={'center'} alignItems={'center'}>
-                    <Box h='100px' w={'200px'} textAlign='center'>
-                      <Image h='100px' w={'200px'} boxShadow={'outline'} rounded={'5px'} src={data.image} />
-                    </Box>
-                  </Flex>
-                  <Flex justifyContent={'space-evenly'}>
-                    {/* <Box textColor={'purple.700'} fontSize={'25'} fontWeight={'bold'} fontStyle={'oblique'}>
-                      {data.start_date}
-                    </Box> */}
-                    <Box textColor={'purple.700'} fontSize={'25'} fontWeight={'bold'} fontStyle={'oblique'}>
+        //     <Card id={data.id} onClick={getData} key={index} height={'200px'}  margin='1%' boxShadow={'outline'} rounded='md' bg={'whiteAlpha.900'} maxW={'350px'} >
+        //       <CardBody>
+        //       <Link to={`/detail/${data._id}`}>
+        //         <Box key={index}  >
+        //           <Box textColor={'purple.700'} fontSize={'25'} fontWeight={'bold'} fontStyle={'oblique'} bg="blue.50">
+        //             {data.tournament_name}
+        //           </Box>
+        //           <Flex justifyContent={'center'} alignItems={'center'}>
+        //             <Box h='100px' w={'200px'} textAlign='center'>
+        //               <Image h='100px' w={'200px'} boxShadow={'outline'} rounded={'5px'} src={data.image} />
+        //             </Box>
+        //           </Flex>
+        //           <Flex justifyContent={'space-evenly'}>
+        //             {/* <Box textColor={'purple.700'} fontSize={'25'} fontWeight={'bold'} fontStyle={'oblique'}>
+        //               {data.start_date}
+        //             </Box> */}
+        //             <Box textColor={'purple.700'} fontSize={'25'} fontWeight={'bold'} fontStyle={'oblique'}>
 
-                      {data.city}
-                    </Box>
-                  </Flex>
-                </Box>
+        //               {data.city}
+        //             </Box>
+        //           </Flex>
+        //         </Box>
 
-              </Link>
-              </CardBody>
-            </Card>
+        //       </Link>
+        //       </CardBody>
+        //     </Card>
 
-          )
+        //   )
 
-        })
-}
+        // })
+} 
       </SimpleGrid>
 
     </div>

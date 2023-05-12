@@ -1,5 +1,6 @@
 import React from 'react';
-import {Box,Heading,OrderedList,ListItem, Button,Text,Stack} from '@chakra-ui/react'
+import {Box,Heading,OrderedList,ListItem, Button,Text,Stack,UnorderedList} from '@chakra-ui/react'
+import { FaLockOpen } from "react-icons/fa";
 import Card from './PaymentForm';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
@@ -44,19 +45,59 @@ const checkoutHandler = async () =>{
 }
 
   return (
-    <Box>
-        <Heading>Premium Features</Heading>
-        <OrderedList>
-  <ListItem>You will able to see the details of other team </ListItem>
-  <ListItem>you can see the results of other team and points table as well</ListItem>
-  <ListItem>You will get some other features as well like dark mode of the website</ListItem>
-  <ListItem>You will get notifiactions of your match on the phone as well</ListItem>
-  </OrderedList>
-       <Text color={'green'}>You can get these all features in  Rs. 20 per month</Text>
+  
+         <Box  p={8}
+         bg="white"
+         borderRadius="lg"
+         boxShadow="0px 4px 15px rgba(0, 0, 0, 0.1)"
+         transition="box-shadow 0.3s ease"
+         _hover={{ boxShadow: "0px 8px 25px rgba(0, 0, 0, 0.2)" }}>
+      <Heading mb={4} fontSize="2xl" fontWeight="bold" textAlign="center" color="purple.800">
+        Premium Features
+      </Heading>
+      <UnorderedList
+        mt={4}
+        ml={8}
+        spacing={2}
+        listStyleType="none"
+        fontSize="lg"
+      >
+        <ListItem>View details of other teams</ListItem>
+        <ListItem>View results of other teams and points tables</ListItem>
+        <ListItem>Enable dark mode for the website</ListItem>
+        <ListItem>Get match notifications on your phone</ListItem>
+      </UnorderedList>
+      <Text fontSize="lg" fontWeight="bold" textAlign="center" color="green.600">
+        Get all these features for only Rs. 20 per month!
+      </Text>
+   
       
-       <Button onClick={checkoutHandler}>Get preminum</Button>
+       <Button
+     
+      px="1.1em"
+      py="0.6em"
+      fontWeight="bold"
+      borderRadius="30px"
+      textShadow="2px 2px 3px rgb(136 0 136 / 50%)"
+      bgGradient="linear(to right, #880088, #aa2068, #cc3f47, #de6f3d, #f09f33, #de6f3d, #cc3f47, #aa2068, #880088)"
+      bgSize="300%"
+      bgPosition="left center"
+      transition="background .3s ease"
+      color="white"
+      _hover={{
+        bgSize: "320%",
+        bgPosition: "right center",
+        svg: { fill: "white" }
+      }}
+      onClick={checkoutHandler}
+    >
+      <FaLockOpen size={23} color="#f09f33" />
+      <span ml="0.4rem">Unlock Premium</span>
+     
+    </Button>
       <ToastContainer/>
-    </Box>
+      </Box>
+    
   );
 }
 

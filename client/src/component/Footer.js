@@ -8,7 +8,8 @@ const Footer = () => {
       widht={"100%"}
       height={"50px"}
       marginBottom={"0px"}
-      justifyContent={"flex-end"}
+      alignItems={"baseline"}
+      position={"sticky"}
     ></Flex>
   );
 };

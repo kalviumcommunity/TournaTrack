@@ -117,6 +117,7 @@ export default function Home() {
             textAlign={"left"}
             paddingLeft={"1%"}
             paddingTop={"20px"}
+            marginLeft={"2%"}
           >
             {/*
         experience  the  thrill of victory.
@@ -147,7 +148,7 @@ export default function Home() {
             paddingLeft="1vw"
             width={"38%"}
             height={"38%"}
-            marginRight={"1%"}
+            marginRight={"2%"}
           >
             <Select
               sportType={sportType}
@@ -279,11 +280,18 @@ export default function Home() {
           textAlign={"left"}
           paddingTop={3}
           margin={"1%"}
+          marginLeft={"3%"}
         >
           Upcoming Tournament
         </Box>
 
-        <SimpleGrid padding={"15px"} spacing={10} minChildWidth={"250px"}>
+        <SimpleGrid
+          padding={"15px"}
+          spacing={10}
+          minChildWidth={"250px"}
+          marginLeft={"2%"}
+          marginRight={"1%"}
+        >
           {loading ? (
             <div class="loader">
               <div class="loader-square"></div>
@@ -315,7 +323,6 @@ export default function Home() {
                       key={index}
                       height={"220px"}
                       margin="1%"
-                      // rounded="md"
                       border="1px solid RGBA(102, 102, 102, 0.5)"
                       bg={"whiteAlpha.900"}
                       maxW={"350px"}
@@ -341,6 +348,7 @@ export default function Home() {
                                 w={"250px"}
                                 rounded={"5px"}
                                 src={data.image}
+                                border={"1px solid hsl(233deg 27% 24%)"}
                               />
                             </Box>
                             <Flex

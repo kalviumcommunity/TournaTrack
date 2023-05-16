@@ -50,6 +50,7 @@ function Navbar({ input, setInput, sportType, setSportType }) {
         bg={"hsl(233deg 27% 24%);"}
         color={""}
         maxHeight={"5em"}
+        paddingLeft={"2.5%"}
       >
         <Link to={"/"}>
           <Flex alignItems={"center"} color="white" ml={5} marginLeft={"1%"}>
@@ -109,7 +110,7 @@ function Navbar({ input, setInput, sportType, setSportType }) {
           /> */}
         {/* </Flex> */}
 
-        <Flex justifyContent={"flex-end"} mt="0.5em" mr="0px">
+        <Flex justifyContent={"flex-end"} mt="0.5em" marginRight={"2%"}>
           <Button
             css={{
               display: "inline-flex",
@@ -242,9 +243,6 @@ function Navbar({ input, setInput, sportType, setSportType }) {
               <br />
               <MenuDivider />
 
-              <Link to="./profile">
-                <MenuItem>My profile</MenuItem>
-              </Link>
               <Link to="./tournamentparticipated">
                 <MenuItem>My tournament</MenuItem>
               </Link>

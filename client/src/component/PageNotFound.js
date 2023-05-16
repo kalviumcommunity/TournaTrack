@@ -1,92 +1,78 @@
-import { useState } from "react";
-import { Button, Grid, GridItem, Text, Box } from "@chakra-ui/react";
-
+import React from "react";
+import { Button, Flex, Heading, Text, Box } from "@chakra-ui/react";
 const PageNotFound = () => {
-  const [cards, setCards] = useState([
-    { id: 1, value: "🐶", flipped: false },
-    { id: 2, value: "🐱", flipped: false },
-    { id: 3, value: "🐭", flipped: false },
-    { id: 4, value: "🐰", flipped: false },
-    { id: 5, value: "🦊", flipped: false },
-    { id: 6, value: "🐻", flipped: false },
-    { id: 7, value: "🐼", flipped: false },
-    { id: 8, value: "🐨", flipped: false },
-  ]);
-  const [flippedCards, setFlippedCards] = useState([]);
-  const [matchedCards, setMatchedCards] = useState([]);
-  const [turns, setTurns] = useState(0);
-  const [message, setMessage] = useState("");
-
-  const handleCardClick = (id) => {
-    if (flippedCards.length === 2) {
-      return;
-    }
-
-    const newCards = cards.map((card) =>
-      card.id === id ? { ...card, flipped: true } : card
-    );
-    setCards(newCards);
-
-    const newFlippedCards = [...flippedCards, id];
-    setFlippedCards(newFlippedCards);
-
-    if (newFlippedCards.length === 2) {
-      const [card1, card2] = newFlippedCards;
-      const matched =
-        cards.find((card) => card.id === card1).value ===
-        cards.find((card) => card.id === card2).value;
-      if (matched) {
-        setMatchedCards([...matchedCards, card1, card2]);
-        setMessage("You found a match!");
-      } else {
-        setMessage("Try again...");
-      }
-      setFlippedCards([]);
-      setTurns(turns + 1);
-    }
-  };
-
   return (
-    <Grid templateColumns="repeat(4, 1fr)" gap={2}>
-      {cards.map((card) => (
-        <GridItem key={card.id}>
+    <Flex
+      id="error-page"
+      alignItems="center"
+      justifyContent="center"
+      bgGradient="repeating-linear(-45deg, #71b7e6, #69a6ce, #b98acc, #ee8176, #b98acc, #69a6ce, #9b59b6)"
+    >
+      <Flex
+        display={"flex"}
+        flexDirection={"column"}
+        className="content"
+        maxW="600px"
+        textAlign="center"
+        bg="#fff"
+        boxShadow="0px 5px 10px rgba(0,0,0,0.1)"
+        p={8}
+        margin={"5%"}
+      >
+        <Heading
+          as="h2"
+          className="header"
+          fontSize="18vw"
+          lineHeight="1em"
+          pos="relative"
+        >
+          404
           <Box
-            w={20}
-            h={20}
-            borderWidth={1}
-            borderRadius={8}
-            display="flex"
-            alignItems="center"
-            justifyContent="center"
-            fontSize="4xl"
-            cursor="pointer"
-            onClick={() =>
-              !matchedCards.includes(card.id) && handleCardClick(card.id)
-            }
-            bg={
-              matchedCards.includes(card.id)
-                ? "gray.400"
-                : card.flipped
-                ? "white"
-                : "gray.100"
-            }
-          >
-            {matchedCards.includes(card.id) || card.flipped ? card.value : "❓"}
-          </Box>
-        </GridItem>
-      ))}
-      <GridItem colSpan={4}>
-        <Text fontSize="xl" fontWeight="bold" mt={4}>
-          {message}
+            pos="absolute"
+            top={0}
+            left={0}
+            right={0}
+            bgGradient="repeating-linear(-45deg, #71b7e6, #69a6ce, #b98acc, #ee8176, #b98acc, #69a6ce, #9b59b6)"
+            bgClip="text"
+            color="transparent"
+            textShadow="1px 1px 2px rgba(255,255,255,0.25)"
+            style={{
+              animation: "animate 10s ease-in-out infinite",
+              position: "absolute",
+              content: "'404'",
+            }}
+          />
+        </Heading>
+        <Heading
+          as="h4"
+          fontSize="2em"
+          mb={4}
+          textTransform="uppercase"
+          color="#000"
+          maxW="600px"
+          pos="relative"
+        >
+          Opps! Page not found
+          <Box
+            pos="absolute"
+            top={0}
+            left={0}
+            right={0}
+            textShadow="1px 1px 2px rgba(255,255,255,0.4)"
+            bgClip="text"
+            color="transparent"
+          />
+        </Heading>
+        <Text fontSize="1.2em" color="#0d0d0d">
+          Sorry, the page you're looking for doesn't exist.
         </Text>
-        <Text fontSize="xl" fontWeight="bold" mt={4}>
-          Turns: {turns}
-        </Text>
-        <Button colorScheme="blue" onClick={() => window.location.reload()}>
-          Play Again
-        </Button>
-      </GridItem>
-    </Grid>
+        <Flex className="btns" mt={6} justifyContent={"center"}>
+          <Button colorScheme="teal" variant="outline">
+            Return home
+          </Button>
+        </Flex>
+      </Flex>
+    </Flex>
   );
 };
 

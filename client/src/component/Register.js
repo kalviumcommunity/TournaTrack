@@ -10,6 +10,8 @@ import {
   Flex,
   List,
   ListItem,
+  Grid,
+  GridItem,
   SimpleGrid,
 } from "@chakra-ui/react";
 import { useState } from "react";
@@ -253,37 +255,54 @@ const Register = () => {
     <Container
       color={"rgb(51, 53, 69)"}
       width={"100%"}
-      justifyContent={"center"}
-      align={"center"}
+      // justifyContent={"center"}
+      // align={"center"}
       margin={"0"}
       maxWidth="100%"
     >
-      <Box maxW="80%" flexDirection="column" justifyContent="center">
-        <Heading marginBottom="2vh">Create your Tournament</Heading>
-        {formData.map((data, index) => {
-          return (
-            <Box
-              width={"full"}
-              gap="1vh"
-              justifyContent={"center"}
-              alignItems={"center"}
-            >
-              <FormControl
-                maxW="60%"
+      <Box
+        maxW="100%"
+        display={"flex"}
+        flexDirection={"column"}
+        alignItems={"center"}
+        marginTop={"2%"}
+        flexWrap={"wrap"}
+      >
+        <Heading marginBottom="2vh" textAlign={"center"}>
+          Create your Tournament
+        </Heading>
+        <SimpleGrid
+          columns={{ sm: 1, md: 2, lg: 2 }}
+          spacing={10}
+          width={{ base: "100%", md: "70%", lg: "60%" }}
+        >
+          {formData.map((data, index) => {
+            return (
+              <Box
+                maxW={{ base: "100%", md: "70%", lg: "60%" }}
                 display={"flex"}
-                flexDirection={"row"}
-                alignItems={"center"}
-                justifyContent="space-between" // Added CSS property to align inputs to the right
-                key={index}
+                flexDirection={"column"}
+                alignItems={{
+                  base: "center",
+                  md: "flex-start",
+                  lg: "flex-start",
+                }}
+                justifyContent="space-between"
                 marginTop={"2%"}
+                flexWrap={"wrap"}
+                textAlign={"left"}
               >
-                <FormLabel
-                  maxW="100vh"
-                  textAlign={"center"}
+                <Box
+                  maxW="100vw"
                   fontWeight={"bold"}
+                  textAlign={"left"}
+                  display={"flex"}
+                  alignContent={"flex-start"}
+                  justifyItems={"self-start"}
+                  opacity={"0.8"}
                 >
                   {data.title}
-                </FormLabel>
+                </Box>
 
                 {data.type === "dropdown" ? (
                   <Select
@@ -307,7 +326,7 @@ const Register = () => {
                   </Select>
                 ) : (
                   <Input
-                    maxW="30vw"
+                    width={{ base: "70vw", md: "30vw", lg: "25vw" }}
                     display={"flex"}
                     flexDirection={"flex-end"}
                     onChange={handelInputs}
@@ -315,13 +334,14 @@ const Register = () => {
                     isRequired={data.isRequired}
                     name={data.name}
                     fontSize={{ base: "small", md: "medium", lg: "larger" }}
-                    border={"2px solid black"}
+                    // border={"0.02px solid black"}
+                    borderRadius={"0px"}
                   />
                 )}
-              </FormControl>
-            </Box>
-          );
-        })}
+              </Box>
+            );
+          })}
+        </SimpleGrid>
         <Box>
           <Box m={4}>
             <form onSubmit={handleSubmit}>
@@ -353,6 +373,7 @@ const Register = () => {
           bg={"rgb(51, 53, 69)"}
           color="white"
           margin="3vh auto"
+          widht={"50vw"}
           onClick={PostData}
         >
           Create

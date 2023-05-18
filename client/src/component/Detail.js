@@ -1,17 +1,7 @@
 import React, { useEffect, useState } from "react";
 // import data from '../Data';
 import bgimage from "../assest/vectorimg.svg";
-import {
-  Box,
-  Button,
-  Card,
-  Center,
-  Flex,
-  UnorderedList,
-  ListItem,
-  Icon,
-  Image,
-} from "@chakra-ui/react";
+import { Box, Button, Card, Center, Flex, Image } from "@chakra-ui/react";
 import { Link, useLocation, useParams, useNavigate } from "react-router-dom";
 function Detail() {
   const [details, setDetails] = useState(null);
@@ -56,19 +46,6 @@ function Detail() {
             backgroundSize={"100vw 100vh"}
             backgroundRepeat={"no-repeat"}
             width={{ base: "100vw", md: "100vw", lg: "100vw" }}
-            // height={{ base: "100%", md: "80vh", lg: "80vh" }}
-            // marginTop={{ base: "5%", md: "5vh", lg: "5vh" }}
-            // marginBottom={{ base: "5%", md: "10vh", lg: "10vh" }}
-            // marginLeft={{ base: "2%", md: "25vw", lg: "25vw" }}
-            // marginRight={{ base: "5%", md: "25vw", lg: "25vw" }}
-            // background="hsl(233deg 27% 65%)"
-            // transition="1s ease-in-out"
-            // clipPath="polygon(30px 0%, 100% 0, 100% calc(100% - 30px), calc(100% - 30px) 100%, 0 100%, 0% 30px)"
-            // borderTopRightRadius="20px"
-            // borderBottomLeftRadius="20px"
-            // display="flex"
-            // flexDirection="column"
-            // z-index="-1"
           >
             <Flex
               textAlign={"center"}

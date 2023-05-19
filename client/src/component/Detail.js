@@ -247,36 +247,12 @@ function Detail() {
                       </Flex>
                     );
                   })}
-                </Flex>
-
-                <Flex
-                  justifyContent={"space-around"}
-                  flexDirection={"row"}
-                  marginTop={"5vh"}
-                >
-                  <Button
-                    display="flex"
-                    height="2.5em"
-                    width={{ base: "80px", md: "100px", lg: "120px" }}
-                    alignItems="center"
-                    justifyContent="center"
-                    backgroundColor="white"
-                    borderRadius="3px"
-                    letterSpacing="1px"
-                    transition="all 0.2s linear"
-                    cursor="pointer"
-                    border="none"
-                    background="#fff"
-                    _hover={{
-                      backgroundColor: "green",
-                      color: "white",
-                    }}
-                    onClick={() => playerRegister()}
+                  <Flex
+                    justifyContent={"space-around"}
+                    flexDirection={"row"}
+                    marginTop={"5vh"}
+                    marginBottom={"2vh"}
                   >
-                    {" "}
-                    <Flex alignItems="center">Register</Flex>
-                  </Button>
-                  <Link to={"/"}>
                     <Button
                       display="flex"
                       height="2.5em"
@@ -291,13 +267,37 @@ function Detail() {
                       border="none"
                       background="#fff"
                       _hover={{
-                        backgroundColor: "red",
+                        backgroundColor: "hsl(233deg 27% 24%)",
                         color: "white",
                       }}
+                      onClick={() => playerRegister()}
                     >
-                      <Flex alignItems="center">Back</Flex>
+                      {" "}
+                      <Flex alignItems="center">Register</Flex>
                     </Button>
-                  </Link>
+                    <Link to={"/"}>
+                      <Button
+                        display="flex"
+                        height="2.5em"
+                        width={{ base: "80px", md: "100px", lg: "120px" }}
+                        alignItems="center"
+                        justifyContent="center"
+                        backgroundColor="white"
+                        borderRadius="3px"
+                        letterSpacing="1px"
+                        transition="all 0.2s linear"
+                        cursor="pointer"
+                        border="none"
+                        background="#fff"
+                        _hover={{
+                          backgroundColor: "hsl(233deg 27% 24%)",
+                          color: "white",
+                        }}
+                      >
+                        <Flex alignItems="center">Back</Flex>
+                      </Button>
+                    </Link>
+                  </Flex>
                 </Flex>
               </Card>
             </Flex>

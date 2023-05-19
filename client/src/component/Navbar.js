@@ -47,7 +47,7 @@ function Navbar({ input, setInput, sportType, setSportType }) {
         p={4}
         flexDirection={"row"}
         justifyContent={"space-between"}
-        bg={"hsl(233deg 27% 24%);"}
+        bg={"hsl(233deg 27% 24%)"}
         color={""}
         maxHeight={"5em"}
         paddingLeft={"2.5%"}

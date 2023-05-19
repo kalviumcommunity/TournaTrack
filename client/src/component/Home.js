@@ -5,6 +5,7 @@ import stadium from "../assest/stadium.jpg";
 import image from "../assest/img.png.jpg";
 import { keyframes } from "@emotion/react";
 import Footer from "./Footer";
+
 import "../component/css/Home.css";
 import { Typewriter } from "react-simple-typewriter";
 // import data from '../Data';
@@ -20,6 +21,7 @@ import {
   Input,
   Select,
 } from "@chakra-ui/react";
+import Loader from "./Loader";
 
 export default function Home() {
   // const [testData,setTestData] = useState("")
@@ -293,15 +295,7 @@ export default function Home() {
           marginRight={"1%"}
         >
           {loading ? (
-            <div class="loader">
-              <div class="loader-square"></div>
-              <div class="loader-square"></div>
-              <div class="loader-square"></div>
-              <div class="loader-square"></div>
-              <div class="loader-square"></div>
-              <div class="loader-square"></div>
-              <div class="loader-square"></div>
-            </div>
+            <Loader color="hsl(233deg 27% 24%)" />
           ) : (
             <>
               {" "}

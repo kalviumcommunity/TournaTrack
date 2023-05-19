@@ -24,6 +24,7 @@ import PaymentSuccess from "./component/PaymentSucces";
 import Sechdule from "./component/Sechdule";
 import PageNotFound from "./component/PageNotFound";
 import Footer from "./component/Footer";
+import Loader from "./component/Loader";
 
 function App() {
   return (

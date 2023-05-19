@@ -19,16 +19,18 @@ function Footer() {
         <div className="logo-footer2" style={{width:"80%",backgroundColor:"#2d314b", display:"flex", justifyContent:"space-evenly", flexDirection:"column"}}>
           <div style={{display:"flex", flexDirection:"column", backgroundColor:"transparent", width:"100%"}}>
             <div className="options" style={{display:"flex", flexDirection:"row", marginTop:"2vh", marginLeft:"9%", width:"100"}}>
-              <div style={{backgroundColor:"#2d314b",width:"50%", display:"flex",flexDirection:"column", alignItems:"left"}}>
-                <h2 style={{backgroundColor:"transparent", textAlign:"left",marginBottom:"2%"}}><span style={{color:"blue"}} className="links">Important Links</span></h2>
-                <li style={{color:"white", backgroundColor:"transparent", marginBottom:".6vh"}}><Link className="links" to={"/"} onClick={() => window.scrollTo(0, 0)} style={{fontSize:"20px"}}>Home</Link></li>
-                <li style={{color:"white", backgroundColor:"transparent", marginBottom:".6vh"}}><Link className="links" to={"/about"} onClick={() => window.scrollTo(0, 0)} style={{fontSize:"20px"}}>About</Link></li>
-                <li style={{color:"white", backgroundColor:"transparent", marginBottom:".6vh"}}><Link className="links" to={"/guides"} onClick={() => window.scrollTo(0, 0)} style={{fontSize:"20px"}}>Rules</Link></li>
-              </div>
-              <div style={{backgroundColor:"#2d314b",width:"50%", display:"flex",flexDirection:"column", alignItems:"left"}}>
-                <h2 style={{backgroundColor:"transparent", textAlign:"left",marginBottom:"2%"}}><span style={{color:"blue"}} className="links">Policies and FAQ's</span></h2>
-                <li style={{color:"white", backgroundColor:"transparent", marginBottom:".6vh"}}><Link className="links" to={"/t&c"} onClick={() => window.scrollTo(0, 0)} style={{fontSize:"20px"}}>T&C</Link></li>
-                <li style={{color:"white", backgroundColor:"transparent", marginBottom:".6vh"}}><Link className="links" to={"/privacypolicy"} onClick={() => window.scrollTo(0, 0)} style={{fontSize:"20px"}}>Privacy Policy</Link></li>
+              <div style={{display:"flex", width:"100%"}}>
+                <div style={{backgroundColor:"#2d314b",width:"50%", display:"flex",flexDirection:"column", alignItems:"left"}}>
+                  <h2 style={{backgroundColor:"transparent", textAlign:"left",marginBottom:"2%"}}><span style={{color:"blue"}} className="links">Important Links</span></h2>
+                  <li style={{color:"white", backgroundColor:"transparent", marginBottom:".6vh"}}><Link className="links" to={"/"} onClick={() => window.scrollTo(0, 0)} style={{fontSize:"20px"}}>Home</Link></li>
+                  <li style={{color:"white", backgroundColor:"transparent", marginBottom:".6vh"}}><Link className="links" to={"/about"} onClick={() => window.scrollTo(0, 0)} style={{fontSize:"20px"}}>About</Link></li>
+                  <li style={{color:"white", backgroundColor:"transparent", marginBottom:".6vh"}}><Link className="links" to={"/guides"} onClick={() => window.scrollTo(0, 0)} style={{fontSize:"20px"}}>Rules</Link></li>
+                </div>
+                <div style={{backgroundColor:"#2d314b",width:"50%", display:"flex",flexDirection:"column", alignItems:"left"}}>
+                  <h2 style={{backgroundColor:"transparent", textAlign:"left",marginBottom:"2%"}}><span style={{color:"blue"}} className="links">Policies and FAQ's</span></h2>
+                  <li style={{color:"white", backgroundColor:"transparent", marginBottom:".6vh"}}><Link className="links" to={"/t&c"} onClick={() => window.scrollTo(0, 0)} style={{fontSize:"20px"}}>T&C</Link></li>
+                  <li style={{color:"white", backgroundColor:"transparent", marginBottom:".6vh"}}><Link className="links" to={"/privacypolicy"} onClick={() => window.scrollTo(0, 0)} style={{fontSize:"20px"}}>Privacy Policy</Link></li>
+                </div>
               </div>
               <div>
                 <h1 className="sub-heading" style={{margin:"auto"}}><span style={{color:"blue"}}>Socials,</span></h1>
@@ -48,7 +50,7 @@ function Footer() {
           </div>
         </div>
         </div>
-        <h2 style={{textAlign:"right", color:"rgb(130 130 130)", backgroundColor:"#2d314b",fontSize:"large", marginTop:"1%", marginBottom:"1%"}}>
+        <h2 style={{textAlign:"right", color:"rgb(130 130 130)", backgroundColor:"#2d314b",fontSize:"large", marginTop:"3%", marginBottom:"1%"}}>
           © CopyRight 2023 TornaTrack
         </h2>
       </footer>

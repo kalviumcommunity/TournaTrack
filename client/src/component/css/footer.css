@@ -54,6 +54,11 @@ span{
     }
     .logo-footer{
     width: 90% !important;
+    margin-bottom: 3vh !important;
+    }
+    .logo-text{
+        flex-direction: column !important;
+        gap: 0vh !important;
     }
     .logo-footer2{
     width: 80% !important;
@@ -65,7 +70,8 @@ span{
     display: flex !important;
     }
     .options{
-        margin-top: 5vh;
+        flex-direction: column !important;
+        margin-left: 0% !important;
     }
 }
 

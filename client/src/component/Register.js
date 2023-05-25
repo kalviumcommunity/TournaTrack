@@ -13,6 +13,7 @@ import {
   Grid,
   GridItem,
   SimpleGrid,
+  Card,
 } from "@chakra-ui/react";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
@@ -275,6 +276,7 @@ const Register = () => {
           columns={{ sm: 1, md: 2, lg: 2 }}
           spacing={10}
           width={{ base: "100%", md: "70%", lg: "60%" }}
+          marginTop={"5vh"}
         >
           {formData.map((data, index) => {
             return (
@@ -343,37 +345,75 @@ const Register = () => {
           })}
         </SimpleGrid>
         <Box>
-          <Box m={4}>
+          <Box
+            m={4}
+            marginLeft={"0px"}
+            width={"55vw"}
+            marginTop={"5vh"}
+            display={"flex"}
+            alignContent={"flex-start"}
+            justifyItems={"self-start"}
+            flexDirection={"row"}
+          >
             <form onSubmit={handleSubmit}>
               <FormControl>
-                <FormLabel textAlign={"center"}>
+                <FormLabel
+                  maxW="100vw"
+                  fontWeight={"bold"}
+                  textAlign={"left"}
+                  display={"flex"}
+                  alignContent={"flex-start"}
+                  justifyItems={"self-start"}
+                  opacity={"0.8"}
+                >
                   Enter a rules and other details
                 </FormLabel>
                 <Input
-                  maxW="40vh"
                   type="text"
                   name="rule"
                   placeholder="Type your rule here"
-                  wid
+                  width={{ base: "70vw", md: "30vw", lg: "25vw" }}
+                  display={"flex"}
+                  flexDirection={"flex-end"}
                 />
               </FormControl>
-              <Button type="submit" mt={2}>
+              <Button
+                type="submit"
+                mt={2}
+                border="0"
+                background={"hsl(233deg 27% 24%)"}
+                color="#fff"
+                width={{ base: "40vw", md: "30", lg: "20vw" }}
+                padding={{ base: "0.5em 1em", md: "0.68em" }}
+                borderRadius="5px"
+                fontWeight="bold"
+                fontSize={{ base: "14px", md: "16px" }}
+                _hover={{ opacity: 0.8 }}
+                marginTop={"5vh"}
+              >
                 Add rule
               </Button>
             </form>
-            <List mt={4}>
+            <List ml={4}>
               {rules.map((rule, index) => (
-                <ListItem key={index}>{rule}</ListItem>
+                <Card>
+                  <ListItem key={index}>{rule}</ListItem>
+                </Card>
               ))}
             </List>
           </Box>
         </Box>
         <Button
-          id="register-button"
-          bg={"rgb(51, 53, 69)"}
-          color="white"
-          margin="3vh auto"
-          widht={"50vw"}
+          border="0"
+          background={"hsl(233deg 27% 24%)"}
+          color="#fff"
+          width={{ base: "40vw", md: "30", lg: "30vw" }}
+          padding={{ base: "0.5em 1em", md: "0.68em" }}
+          borderRadius="5px"
+          fontWeight="bold"
+          fontSize={{ base: "14px", md: "16px" }}
+          _hover={{ opacity: 0.8 }}
+          marginTop={"5vh"}
           onClick={PostData}
         >
           Create

@@ -10,6 +10,7 @@ span{
 }
 
 .footer{
+   
     z-index: 2;
     background-color: #2d314b;
 }
@@ -18,7 +19,7 @@ span{
     margin-top: 4%;
     margin-bottom: 3%;
     text-align: left;
-    font-size: xxx-large;
+    font-size: x-large;
     background-color: transparent;
     color: white;
     text-shadow: 0px 0px 90px #000, 0px 0px 10px #858585;

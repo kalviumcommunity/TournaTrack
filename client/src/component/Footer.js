@@ -228,7 +228,12 @@ function Footer() {
                       backgroundColor: "#2d314b",
                     }}
                   >
-                    <Link to={"https://www.linkedin.com"} target="_blank">
+                    <Link
+                      to={
+                        "https://www.linkedin.com/in/shubham-kumar-9667b8226/"
+                      }
+                      target="_blank"
+                    >
                       <FaLinkedin
                         size={30}
                         className="login"
@@ -238,14 +243,14 @@ function Footer() {
                         }}
                       />
                     </Link>
-                    <Link to={"https://www.instagram.com"}>
+                    <Link to={"https://www.instagram.com/i_mshubhamk/"}>
                       <FaInstagram
                         size={30}
                         className="login"
                         style={{ backgroundColor: "#2d314b", color: "white" }}
                       />
                     </Link>
-                    <Link to={"https://twitter.com"}>
+                    <Link to={"https://twitter.com/im_shubhk"}>
                       <FaTwitter
                         size={30}
                         className="login"

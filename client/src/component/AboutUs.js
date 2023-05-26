@@ -116,7 +116,7 @@ const AboutUs = () => {
                 <HStack spacing={4} display={"flex"} marginTop={"2vh"}>
                   <IconButton
                     as={Link}
-                    href="https://twitter.com/example"
+                    href="https://twitter.com/im_shubhk"
                     target="_blank"
                     rel="noopener noreferrer"
                     aria-label="Twitter"
@@ -127,7 +127,7 @@ const AboutUs = () => {
                   />
                   <IconButton
                     as={Link}
-                    href="https://facebook.com/example"
+                    href="https://www.facebook.com/people/Shubham-Rai/pfbid0LuqU4s5gpfc3UU1wpxJuKkQ9J7gvUiYrDuH8s615FhcLw4egEzDif9nfZSYEo6UWl/?mibextid=ZbWKwL"
                     target="_blank"
                     rel="noopener noreferrer"
                     aria-label="Facebook"
@@ -147,7 +147,7 @@ const AboutUs = () => {
                   />
                   <IconButton
                     as={Link}
-                    href="https://instagram.com/example"
+                    href="https://www.instagram.com/i_mshubhamk/"
                     target="_blank"
                     rel="noopener noreferrer"
                     aria-label="Instagram"

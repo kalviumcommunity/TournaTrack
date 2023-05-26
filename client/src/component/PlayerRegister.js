@@ -89,7 +89,7 @@ function PlayerRegister() {
   return (
     <Container
       maxH={"100vh"}
-      height={"100vh"}
+      // height={"100vh"}
       justifyContent={"center"}
       align={"center"}
       bg="#C9D6DF"

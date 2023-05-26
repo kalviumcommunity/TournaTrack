@@ -6,10 +6,13 @@ import "./css/footer.css";
 
 function Footer() {
   return (
-    <div className="footer" style={{ borderTop: "1px solid black" }}>
+    <div
+      className="footer"
+      style={{ borderTop: "1px solid black", marginTop: "10%" }}
+    >
       <footer
         style={{
-          flexDirection: "column",
+          flexDirection: "row",
           marginTop: "",
           justifyContent: "center",
           alignItems: "center",
@@ -21,15 +24,12 @@ function Footer() {
           style={{
             backgroundColor: "#2d314b",
             display: "flex",
-            flexDirection: "column",
+            flexDirection: "row",
             justifyContent: "center",
             alignItems: "center",
           }}
         >
-          <div
-            className="logo-footer"
-            style={{ width: "100%", backgroundColor: "#2d314b" }}
-          >
+          <div className="logo-footer" style={{ backgroundColor: "#2d314b" }}>
             <div
               className="logo-text"
               style={{
@@ -38,7 +38,7 @@ function Footer() {
                 flexDirection: "row",
                 justifyContent: "center",
                 alignItems: "center",
-                width: "100%",
+                // width: "100%",
                 gap: "4vw",
               }}
             >
@@ -48,29 +48,11 @@ function Footer() {
                 alt=""
                 style={{
                   backgroundColor: "#2d314b",
-                  width: "4%",
+                  width: "3rem",
                   marginTop: "4vh",
                   marginBottom: "2vh",
-                  width: "5%",
                 }}
               />
-              <p
-                style={{
-                  marginRight: "0%",
-                  width: "80%",
-                  textAlign: "center",
-                  marginTop: "1vh",
-                  fontSize: "large",
-                  color: "white",
-                  backgroundColor: "transparent",
-                }}
-              >
-                The ultimate platform for sports enthusiasts and tournament
-                organizers! Whether you're an avid player or a passionate
-                organizer, our platform provides a seamless experience to
-                explore the sports world, showcase your talents, and create
-                unforgettable tournaments.
-              </p>
             </div>
           </div>
           <div
@@ -118,7 +100,10 @@ function Footer() {
                         marginBottom: "2%",
                       }}
                     >
-                      <span style={{ color: "blue" }} className="links">
+                      <span
+                        style={{ color: "white", fontSize: "22px" }}
+                        className="links"
+                      >
                         Important Links
                       </span>
                     </h2>
@@ -133,7 +118,7 @@ function Footer() {
                         className="links"
                         to={"/"}
                         onClick={() => window.scrollTo(0, 0)}
-                        style={{ fontSize: "20px" }}
+                        style={{ fontSize: "16px", opacity: "0.7" }}
                       >
                         Home
                       </Link>
@@ -149,7 +134,7 @@ function Footer() {
                         className="links"
                         to={"/about"}
                         onClick={() => window.scrollTo(0, 0)}
-                        style={{ fontSize: "20px" }}
+                        style={{ fontSize: "16px", opacity: "0.7" }}
                       >
                         About
                       </Link>
@@ -165,7 +150,7 @@ function Footer() {
                         className="links"
                         to={"/guides"}
                         onClick={() => window.scrollTo(0, 0)}
-                        style={{ fontSize: "20px" }}
+                        style={{ fontSize: "16px", opacity: "0.7" }}
                       >
                         Rules
                       </Link>
@@ -187,7 +172,10 @@ function Footer() {
                         marginBottom: "2%",
                       }}
                     >
-                      <span style={{ color: "blue" }} className="links">
+                      <span
+                        style={{ color: "white", fontSize: "22px" }}
+                        className="links"
+                      >
                         Policies and FAQ's
                       </span>
                     </h2>
@@ -202,7 +190,7 @@ function Footer() {
                         className="links"
                         to={"/t&c"}
                         onClick={() => window.scrollTo(0, 0)}
-                        style={{ fontSize: "20px" }}
+                        style={{ fontSize: "16px", opacity: "0.7" }}
                       >
                         T&C
                       </Link>
@@ -218,7 +206,7 @@ function Footer() {
                         className="links"
                         to={"/privacypolicy"}
                         onClick={() => window.scrollTo(0, 0)}
-                        style={{ fontSize: "20px" }}
+                        style={{ fontSize: "16px", opacity: "0.7" }}
                       >
                         Privacy Policy
                       </Link>
@@ -227,31 +215,39 @@ function Footer() {
                 </div>
                 <div>
                   <h1 className="sub-heading" style={{ margin: "auto" }}>
-                    <span style={{ color: "blue" }}>Socials,</span>
+                    <span style={{ color: "white", fontSize: "22px" }}>
+                      Socials
+                    </span>
                   </h1>
                   <div
                     style={{
                       display: "flex",
                       justifyContent: "center",
-                      gap: "9vw",
+                      gap: "1rem",
                       marginTop: "5%",
                       backgroundColor: "#2d314b",
                     }}
                   >
                     <Link to={"https://www.linkedin.com"} target="_blank">
                       <FaLinkedin
+                        size={30}
                         className="login"
-                        style={{ backgroundColor: "#2d314b", color: "white" }}
+                        style={{
+                          backgroundColor: "#2d314b",
+                          color: "white",
+                        }}
                       />
                     </Link>
                     <Link to={"https://www.instagram.com"}>
                       <FaInstagram
+                        size={30}
                         className="login"
                         style={{ backgroundColor: "#2d314b", color: "white" }}
                       />
                     </Link>
                     <Link to={"https://twitter.com"}>
                       <FaTwitter
+                        size={30}
                         className="login"
                         style={{ backgroundColor: "#2d314b", color: "white" }}
                       />
@@ -264,12 +260,14 @@ function Footer() {
         </div>
         <h2
           style={{
-            textAlign: "right",
-            color: "rgb(130 130 130)",
+            textAlign: "center",
+            color: "white",
+            opacity: "0.3",
             backgroundColor: "#2d314b",
             fontSize: "large",
             marginTop: "3%",
             marginBottom: "1%",
+            paddingBottom: "1rem",
           }}
         >
           © CopyRight 2023 TornaTrack

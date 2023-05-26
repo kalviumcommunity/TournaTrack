@@ -5,8 +5,7 @@ a{
 span{
     background-color: #2d314b;
     background-color: transparent;
-    font-size: x-large;
-    text-shadow: .5px .1px 0px white, 0px 0px 35px black;
+    font-size: 2rem;
 }
 
 .footer{

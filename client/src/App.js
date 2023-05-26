@@ -51,7 +51,7 @@ function App() {
         <Route path="*" element={<PageNotFound />} />
       </Routes>
       {/* <GeoLocation /> */}
-      <Footer />
+      {/* <Footer /> */}
     </div>
   );
 }

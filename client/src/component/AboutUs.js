@@ -24,7 +24,7 @@ const AboutUs = () => {
   const isMobile = useBreakpointValue({ base: true, lg: false });
 
   return (
-    <Box p={8} height={"100vh"}>
+    <Box p={8}>
       <Center>
         <HStack spacing={8}>
           {!isMobile && (
@@ -36,11 +36,11 @@ const AboutUs = () => {
                 boxSize="400px"
                 objectFit="cover"
               />
-              <Text>
+              <Text fontSize="1.5rem" fontWeight="600" marginTop="1rem">
                 Shubham kumar <br /> Founder of TournaTrack
               </Text>
-              <Heading as="h3">contact Us</Heading>
-              <HStack spacing={4} display={"flex"} marginTop={"2vh"}>
+
+              <HStack spacing={4} display={"flex"} marginTop={"3rem"}>
                 <IconButton
                   as={Link}
                   href="https://twitter.com/example"
@@ -169,10 +169,10 @@ const AboutUs = () => {
               </Box>
             )}
 
-            <Heading as="h1" size="xl">
+            <Heading as="h3" size="lg">
               About Us
             </Heading>
-            <Text fontSize="lg" textAlign={!isMobile ? "left" : "center"}>
+            <Text fontSize="1rem" textAlign={!isMobile ? "left" : "center"}>
               Welcome to our website, the ultimate platform for sports
               enthusiasts and tournament organizers! Whether you're an avid
               player or a passionate organizer, our platform provides a seamless
@@ -181,10 +181,10 @@ const AboutUs = () => {
               exciting journey filled with competition, camaraderie, and endless
               opportunities for growth.
             </Text>
-            <Heading as="h2" size="xl">
+            <Heading as="h3" size="lg">
               For Players
             </Heading>
-            <Text fontSize="lg" textAlign={!isMobile ? "left" : "center"}>
+            <Text fontSize="1rem" textAlign={!isMobile ? "left" : "center"}>
               Our website empowers athletes of all skill levels to participate
               in a wide range of tournaments across various sports disciplines.
               Whether you're a seasoned professional or a rookie looking to make
@@ -196,10 +196,10 @@ const AboutUs = () => {
               off your talents, and relish the thrill of competitive sports.
             </Text>
 
-            <Heading as="h2" size="xl">
+            <Heading as="h3" size="lg">
               For Organisers
             </Heading>
-            <Text fontSize="lg" textAlign={!isMobile ? "left" : "center"}>
+            <Text fontSize="1rem" textAlign={!isMobile ? "left" : "center"}>
               If you're a sports enthusiast with a knack for event planning, our
               website is your perfect companion. As an organizer, you can create
               and host your own tournaments with ease. From local community
@@ -214,10 +214,10 @@ const AboutUs = () => {
               participants.
             </Text>
 
-            <Heading as="h2" size="xl">
+            <Heading as="h3" size="lg">
               What will you get in the future ?
             </Heading>
-            <Text fontSize="lg" textAlign={!isMobile ? "left" : "center"}>
+            <Text fontSize="1rem" textAlign={!isMobile ? "left" : "center"}>
               Our website goes beyond just tournaments. We understand that
               sports are not just about competition; they're about fostering
               personal growth, building connections, and creating memorable

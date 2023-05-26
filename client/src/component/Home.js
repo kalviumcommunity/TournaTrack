@@ -103,7 +103,7 @@ export default function Home() {
 
   return (
     <>
-      <Box height={"100vh"} marginBottom={"5vh"}>
+      <Box marginBottom={"5vh"}>
         <Box
           display={"flex"}
           justifyContent={"space-between"}
@@ -317,11 +317,12 @@ export default function Home() {
                       key={index}
                       height={"220px"}
                       margin="1%"
-                      border="1px solid RGBA(102, 102, 102, 0.5)"
+                      // border="1px solid RGBA(102, 102, 102, 0.5)"
                       bg={"whiteAlpha.900"}
                       maxW={"350px"}
+                      boxShadow={"0px 3px 8px -2px #9d9d9d"}
                       _hover={{
-                        border: "1px solid black",
+                        // border: "1px solid black",
                         transform: "scale(1.05)",
                         boxShadow: "0px 0px 30px 1px rgba(0, 255, 117, 0.30)",
                         transition: "all .3s",

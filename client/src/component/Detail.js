@@ -28,7 +28,7 @@ function Detail() {
   console.log(details);
 
   return (
-    <>
+    <Box minHeight={"100vh"}>
       <Image
         src={bgimage}
         position={"absolute"}
@@ -42,8 +42,8 @@ function Detail() {
         ) : (
           <Box
             // backgroundImage={{ base: "", md: bgimage, lg: bgimage }}
-            // height={{ base: "70vh", md: "100vh", lg: "100vh" }}
-            backgroundSize={"100vw 100vh"}
+            height={{ base: "70vh", md: "100vh", lg: "100vh" }}
+            backgroundSize={"100vw"}
             backgroundRepeat={"no-repeat"}
             width={{ base: "100vw", md: "100vw", lg: "100vw" }}
           >
@@ -304,7 +304,7 @@ function Detail() {
           </Box>
         )}
       </Box>
-    </>
+    </Box>
   );
 }
 

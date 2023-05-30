@@ -8,6 +8,7 @@ import {
   CardBody,
   SimpleGrid,
   Text,
+  Box,
 } from "@chakra-ui/react";
 const Created = () => {
   const [data, setData] = useState();
@@ -25,7 +26,7 @@ const Created = () => {
     getData();
   }, []);
   return (
-    <div>
+    <Box width="100vw" minHeight={"100vh"} margin>
       <Tournament />
       <Link to="/sechdule">
         <Flex
@@ -86,7 +87,7 @@ const Created = () => {
             );
           })}
       </SimpleGrid>
-    </div>
+    </Box>
   );
 };
 

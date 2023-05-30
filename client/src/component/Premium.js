@@ -54,6 +54,9 @@ const Premium = () => {
   return (
     <Box
       p={8}
+      marginLeft={"40vh"}
+      marginRight={"40vh"}
+      marginTop={"10vh"}
       bg="white"
       borderRadius="lg"
       boxShadow="0px 4px 15px rgba(0, 0, 0, 0.1)"
@@ -75,7 +78,9 @@ const Premium = () => {
         spacing={2}
         listStyleType="none"
         fontSize="lg"
-        textAlign={"center"}
+        textAlign={"right"}
+        display={"flex"}
+        alignItems={"flex-start"}
       >
         <Text>View details of other teams</Text>
         <Text>View results of other teams and points tables</Text>
@@ -90,19 +95,24 @@ const Premium = () => {
         >
           Get all these features for only Rs. 20 per month!
         </Text>
-        <Text fontSize="lg" fontWeight="bold" textAlign="center" color="red">
+        <Text
+          fontSize="lg"
+          fontWeight="bold"
+          textAlign="center"
+          color="hsl(233deg 27% 24%)"
+        >
           But all these things are in development phase for now, So don't pay
           now{" "}
         </Text>
       </Card>
       <Button
+        marginTop="3rem"
         px="1.1em"
         py="0.6em"
-        fontWeight="bold"
-        borderRadius="30px"
+        fontWeight="md"
+        borderRadius="10px"
         textShadow="2px 2px 3px rgb(136 0 136 / 50%)"
-        bgGradient="linear(to right, #880088, #aa2068, #cc3f47, #de6f3d, #f09f33, #de6f3d, #cc3f47, #aa2068, #880088)"
-        bgSize="300%"
+        background="hsl(233deg 27% 24%)"
         bgPosition="left center"
         transition="background .3s ease"
         color="white"
